@@ -1,0 +1,25 @@
+{
+  "name": "Automatizado Merch",
+  "short_name": "Automatizado",
+  "description": "Premium underground merch — Automatizado brand store",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#080808",
+  "background_color": "#080808",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <!-- Background -->
+  <rect width="192" height="192" rx="40" fill="#080808"/>
+  <!-- Outer glow ring -->
+  <circle cx="96" cy="96" r="72" fill="none" stroke="#7B2FFF" stroke-width="1.5" opacity="0.3"/>
+  <!-- Main circle accent -->
+  <circle cx="96" cy="96" r="52" fill="none" stroke="#7B2FFF" stroke-width="3" opacity="0.8"/>
+  <!-- Inner fill -->
+  <circle cx="96" cy="96" r="44" fill="rgba(123,47,255,0.12)"/>
+  <!-- Symbol: stylized A with void circle -->
+  <text x="96" y="114" font-family="Inter,Arial,sans-serif" font-size="64" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-3">A</text>
+  <!-- Void dot -->
+  <circle cx="96" cy="72" r="5" fill="#7B2FFF"/>
+  <!-- Bottom tagline dots -->
+  <circle cx="80" cy="148" r="3" fill="#7B2FFF" opacity="0.6"/>
+  <circle cx="96" cy="148" r="3" fill="#7B2FFF"/>
+  <circle cx="112" cy="148" r="3" fill="#7B2FFF" opacity="0.6"/>
+</svg>

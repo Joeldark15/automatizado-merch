@@ -3,336 +3,1205 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Podo in Balance - Podología Avanzada</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<title>Podo in Balance - Podología y Postura en Elda</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "primary": "#0056b2",
-          "background-light": "#f5f7f8",
-          "background-dark": "#0f1923",
-        },
-        fontFamily: { "display": ["Inter"] },
-        borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-      },
-    },
-  }
-</script>
 <style>
-  .nav-active { color: #0056b2 !important; font-weight: 700; }
-  #mobile-menu { display: none; }
-  #mobile-menu.open { display: flex; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --purple: #7C3AED;
+    --purple-dark: #5B21B6;
+    --purple-light: #A78BFA;
+    --purple-bg: #EDE9FE;
+    --teal: #2DD4BF;
+    --teal-dark: #0D9488;
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+    --font-body: 'Poppins', sans-serif;
+    --font-display: 'Playfair Display', serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+
+  /* =================== HEADER =================== */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--purple);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    font-family: var(--font-body);
+  }
+
+  .logo-text {
+    font-size: 13px;
+    color: var(--gray-700);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .logo-text strong {
+    display: block;
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: 15px;
+  }
+
+  .nav { display: flex; align-items: center; gap: 32px; }
+
+  .nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-600);
+    transition: color 0.2s;
+  }
+
+  .nav a:hover, .nav a.active { color: var(--purple); font-weight: 600; }
+
+  .header-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .header-cta:hover { background: var(--purple-dark); }
+
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+
+  /* =================== HERO =================== */
+  .hero {
+    position: relative;
+    padding: 60px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    min-height: 600px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: var(--purple);
+    border-radius: 50% 50% 50% 20%;
+    z-index: 0;
+    opacity: 0.9;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    background: var(--purple-light);
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--gray-900);
+    margin-bottom: 24px;
+  }
+
+  .hero-title span { color: var(--purple); }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--gray-500);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 440px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3);
+  }
+
+  .hero-cta:hover {
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.4);
+  }
+
+  .hero-image-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image-frame {
+    position: relative;
+    width: 420px;
+    height: 480px;
+  }
+
+  .hero-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-image-frame::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--teal);
+    border-radius: 16px;
+    z-index: 3;
+  }
+
+  .hero-image-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--teal);
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: 1;
+  }
+
+  /* Decorative dots */
+  .dots-pattern {
+    position: absolute;
+    bottom: 30px;
+    left: -30px;
+    display: grid;
+    grid-template-columns: repeat(4, 8px);
+    gap: 8px;
+    z-index: 1;
+  }
+
+  .dots-pattern span {
+    width: 6px;
+    height: 6px;
+    background: var(--purple-light);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* =================== TRUST BAR =================== */
+  .trust-section {
+    padding: 80px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .trust-features { display: flex; flex-direction: column; gap: 24px; }
+
+  .trust-feature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .trust-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .trust-icon .material-symbols-outlined {
+    color: var(--purple);
+    font-size: 24px;
+  }
+
+  .trust-feature-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-800);
+  }
+
+  .trust-right {
+    position: relative;
+  }
+
+  .trust-right-content {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  .trust-right-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+
+  .trust-right h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .trust-signature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .trust-signature-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--purple);
+    font-size: 14px;
+  }
+
+  .trust-signature-name {
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--gray-600);
+  }
+
+  /* =================== SERVICES =================== */
+  .services-section {
+    background: linear-gradient(135deg, var(--purple) 0%, #6D28D9 50%, var(--purple-dark) 100%);
+    padding: 80px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .services-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .services-header h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .services-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .services-tab {
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    background: transparent;
+    transition: all 0.3s;
+  }
+
+  .services-tab.active, .services-tab:hover {
+    background: white;
+    color: var(--purple);
+    border-color: white;
+  }
+
+  .services-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .services-main-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .services-description {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .services-grid-item {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 140px;
+    position: relative;
+  }
+
+  .services-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .services-grid-item:hover img { transform: scale(1.05); }
+
+  .services-grid-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .services-grid-item .overlay span {
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* =================== WHY US =================== */
+  .why-section {
+    padding: 80px 48px;
+    background: var(--white);
+  }
+
+  .why-section h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--gray-900);
+    margin-bottom: 60px;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .why-item { text-align: center; }
+
+  .why-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), #34D399);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 25px rgba(45, 212, 191, 0.3);
+  }
+
+  .why-icon .material-symbols-outlined {
+    color: white;
+    font-size: 32px;
+  }
+
+  .why-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 8px;
+  }
+
+  .why-item p {
+    font-size: 12px;
+    color: var(--gray-500);
+    line-height: 1.6;
+  }
+
+  /* =================== TEAM =================== */
+  .team-section {
+    padding: 80px 48px;
+    background: var(--gray-50);
+  }
+
+  .team-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .team-image-area {
+    position: relative;
+  }
+
+  .team-photo {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  }
+
+  .team-card {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: white;
+    padding: 20px 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+
+  .team-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .team-card p {
+    font-size: 13px;
+    color: var(--gray-500);
+  }
+
+  .team-info h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .team-info p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .team-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--purple);
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 8px;
+    transition: gap 0.3s;
+  }
+
+  .team-cta:hover { gap: 14px; }
+
+  /* =================== TESTIMONIALS =================== */
+  .testimonials-section {
+    padding: 80px 48px;
+    background: var(--white);
+  }
+
+  .testimonials-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 48px;
+  }
+
+  .testimonials-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .testimonials-header h2 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.2;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: var(--gray-50);
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .testimonial-stars {
+    color: #FBBF24;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 2px;
+  }
+
+  .testimonial-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .testimonial-name { font-weight: 600; font-size: 14px; color: var(--gray-800); }
+  .testimonial-role { font-size: 12px; color: var(--gray-500); }
+
+  /* =================== FOOTER =================== */
+  .footer {
+    background: linear-gradient(135deg, var(--purple-dark) 0%, #4C1D95 100%);
+    color: white;
+    padding: 60px 48px 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .footer-brand p {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 16px;
+    max-width: 320px;
+  }
+
+  .footer h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .footer ul li {
+    margin-bottom: 12px;
+  }
+
+  .footer ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer ul li a:hover { color: white; }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+  }
+
+  .footer-social a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+
+  /* =================== MOBILE =================== */
+  @media (max-width: 768px) {
+    .header { padding: 12px 20px; }
+    .nav { display: none; }
+    .header-cta { display: none; }
+    .mobile-menu-btn { display: block; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 40px 20px 60px;
+      min-height: auto;
+    }
+
+    .hero::before {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      right: -80px;
+    }
+
+    .hero-title { font-size: 36px; }
+
+    .hero-image-frame {
+      width: 280px;
+      height: 340px;
+      margin: 0 auto;
+    }
+
+    .trust-section {
+      grid-template-columns: 1fr;
+      padding: 60px 20px;
+      gap: 40px;
+    }
+
+    .services-section { padding: 60px 20px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-tabs { gap: 8px; }
+    .services-tab { padding: 8px 20px; font-size: 13px; }
+
+    .why-section { padding: 60px 20px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+    .team-section { padding: 60px 20px; }
+    .team-inner { grid-template-columns: 1fr; gap: 40px; }
+    .team-card { right: 10px; bottom: -10px; }
+
+    .testimonials-section { padding: 60px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-header { flex-direction: column; align-items: flex-start; }
+
+    .footer { padding: 40px 20px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* =================== ANIMATIONS =================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content { animation: fadeUp 0.8s ease-out; }
+  .hero-image-wrapper { animation: fadeUp 0.8s ease-out 0.2s both; }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 200;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav-close {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .mobile-nav a {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-800);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .mobile-nav a:hover { color: var(--purple); }
 </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<body>
 
-  <!-- HEADER -->
-  <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 md:px-20 py-4 bg-white dark:bg-slate-900 sticky top-0 z-50">
-    <a href="index.html" class="flex items-center gap-3 text-primary">
-      <span class="material-symbols-outlined text-4xl">footprint</span>
-      <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Podo in Balance</h2>
-    </a>
-    <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
-      <nav class="flex items-center gap-8">
-        <a class="nav-active text-sm" href="index.html">Inicio</a>
-        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#services">Servicios</a>
-        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="el-centro.html">El Centro</a>
-        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="vanessa-montero.html">Equipo</a>
-        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#contact">Contacto</a>
-      </nav>
-      <a href="#contact" class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-all shadow-sm">
-        <span class="truncate">Pedir Cita</span>
-      </a>
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo">
+    <div class="logo-icon">Pb</div>
+    <div class="logo-text">
+      <strong>Podo in Balance</strong>
+      Podología Postural
     </div>
-    <button id="menu-btn" class="md:hidden" onclick="toggleMenu()">
-      <span class="material-symbols-outlined text-slate-900 dark:text-white">menu</span>
-    </button>
-  </header>
+  </a>
+  <nav class="nav">
+    <a href="index.html" class="active">Información</a>
+    <a href="#services">Servicios</a>
+    <a href="#">Blog</a>
+    <a href="vanessa-montero.html">Equipo</a>
+    <a href="#contact">Contacto</a>
+  </nav>
+  <a href="tel:+34912345678" class="header-cta">
+    <span class="material-symbols-outlined" style="font-size:18px">call</span>
+    +34 912 70 10 07
+  </a>
+  <button class="mobile-menu-btn" onclick="document.getElementById('mobileNav').classList.add('open')">
+    <span class="material-symbols-outlined" style="font-size:28px;color:var(--gray-800)">menu</span>
+  </button>
+</header>
 
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" class="flex-col bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 gap-4 md:hidden">
-    <a class="text-primary font-bold" href="index.html">Inicio</a>
-    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="#services">Servicios</a>
-    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="el-centro.html">El Centro</a>
-    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="vanessa-montero.html">Equipo</a>
-    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="#contact">Contacto</a>
-    <a href="#contact" class="bg-primary text-white text-center py-2 px-4 rounded-lg font-bold">Pedir Cita</a>
-  </div>
-
-  <main>
-    <!-- HERO -->
-    <section class="relative">
-      <div class="flex min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-start justify-center px-6 md:px-20 py-20 relative overflow-hidden"
-        style='background-image: linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t");'>
-        <div class="flex flex-col gap-4 max-w-[700px] z-10">
-          <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight">
-            Recupera el equilibrio de tus pies
-          </h1>
-          <p class="text-slate-100 text-lg md:text-xl font-normal leading-relaxed">
-            Tratamientos especializados para caminar con salud y bienestar. Expertos en biomecánica y cuidado clínico integral.
-          </p>
-          <div class="mt-4">
-            <a href="#contact" class="inline-flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-primary text-white text-lg font-black shadow-xl hover:scale-105 transition-transform">
-              Pedir Cita
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="py-20 px-6 md:px-20 bg-background-light dark:bg-background-dark" id="services">
-      <div class="max-w-[1200px] mx-auto">
-        <div class="mb-12 text-center">
-          <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-4">Nuestros Servicios Especializados</h2>
-          <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl">medical_services</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Podología Clínica</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Tratamiento profesional de durezas, helomas, papilomas y afecciones ungueales para mantener la salud diaria de tus pies.</p>
-            </div>
-          </div>
-          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl">directions_walk</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Estudio Biomecánico</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Análisis digital avanzado de la marcha y la pisada para corregir posturas y diseñar plantillas personalizadas.</p>
-            </div>
-          </div>
-          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl">surgical</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Cirugía Ungueal</h3>
-              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Procedimientos quirúrgicos ambulatorios mínimamente invasivos para la solución definitiva de uñas encarnadas.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOBRE NOSOTROS -->
-    <section class="py-20 px-6 md:px-20" id="about">
-      <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div class="relative group">
-          <div class="absolute -inset-4 bg-primary/10 rounded-2xl transform rotate-3 group-hover:rotate-0 transition-transform"></div>
-          <div class="relative aspect-[4/5] bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-xl">
-            <img alt="Podóloga profesional" class="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
-          </div>
-        </div>
-        <div class="flex flex-col gap-6">
-          <span class="text-primary font-bold uppercase tracking-widest text-sm">Sobre Nosotros</span>
-          <h2 class="text-slate-900 dark:text-white text-4xl font-black leading-tight">Expertos en Salud Podológica</h2>
-          <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-            En Podo in Balance, nuestra filosofía se centra en devolver la armonía a tu pisada. Entendemos que unos pies sanos son la base de un cuerpo equilibrado.
-          </p>
-          <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
-            Combinamos tecnología de diagnóstico de vanguardia con un trato humano y personalizado. Cada tratamiento es único, diseñado para asegurar que cada paso que des sea con total bienestar y sin dolor.
-          </p>
-          <div class="grid grid-cols-2 gap-6 pt-4">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
-              <span class="font-semibold">Atención Integral</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
-              <span class="font-semibold">Tecnología 3D</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
-              <span class="font-semibold">Cuidado Humano</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
-              <span class="font-semibold">Post-operativo</span>
-            </div>
-          </div>
-          <a href="el-centro.html" class="inline-flex items-center gap-2 text-primary font-bold hover:underline mt-2">
-            Conoce nuestro centro <span class="material-symbols-outlined text-lg">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIOS -->
-    <section class="py-24 px-6 md:px-20 bg-primary text-white">
-      <div class="max-w-[1200px] mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Lo que dicen nuestros pacientes</h2>
-          <p class="text-blue-100 font-medium">La confianza de quienes ya caminan sin dolor</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-            <div class="flex text-yellow-400 mb-4">
-              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
-            </div>
-            <p class="text-white italic mb-6">"El estudio biomecánico cambió mi forma de correr. Las plantillas personalizadas son comodísimas y han desaparecido mis molestias en la rodilla."</p>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">JP</div>
-              <span class="font-bold">Juan Pérez</span>
-            </div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-            <div class="flex text-yellow-400 mb-4">
-              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
-            </div>
-            <p class="text-white italic mb-6">"Excelente trato y profesionalidad. Me operaron de una uña encarnada y el proceso fue rápido, sin dolor y con un seguimiento impecable."</p>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">MG</div>
-              <span class="font-bold">Marta García</span>
-            </div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-            <div class="flex text-yellow-400 mb-4">
-              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
-            </div>
-            <p class="text-white italic mb-6">"Llevé a mi hijo por un problema de pisada y la explicación fue clarísima. El centro es moderno y el personal muy atento con los niños."</p>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">RC</div>
-              <span class="font-bold">Ricardo Casal</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section class="py-24 px-6 md:px-20 bg-gradient-to-br from-blue-50 to-white dark:from-slate-900 dark:to-background-dark" id="contact">
-      <div class="max-w-[1200px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div class="flex flex-col gap-8">
-            <div>
-              <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-4">Contacta con nosotros</h2>
-              <p class="text-slate-600 dark:text-slate-400">Resuelve tus dudas o solicita tu primera visita informativa.</p>
-            </div>
-            <div class="space-y-6">
-              <div class="flex gap-4">
-                <span class="material-symbols-outlined text-primary">location_on</span>
-                <div>
-                  <p class="font-bold">Dirección</p>
-                  <p class="text-slate-600 dark:text-slate-400 text-sm">Calle de la Salud, 12, 28013 Madrid</p>
-                </div>
-              </div>
-              <div class="flex gap-4">
-                <span class="material-symbols-outlined text-primary">call</span>
-                <div>
-                  <p class="font-bold">Teléfono</p>
-                  <p class="text-slate-600 dark:text-slate-400 text-sm">+34 912 345 678</p>
-                </div>
-              </div>
-              <div class="flex gap-4">
-                <span class="material-symbols-outlined text-primary">schedule</span>
-                <div>
-                  <p class="font-bold">Horario</p>
-                  <p class="text-slate-600 dark:text-slate-400 text-sm">Lunes - Viernes: 09:00 - 20:00</p>
-                  <p class="text-slate-600 dark:text-slate-400 text-sm">Sábados: 10:00 - 14:00</p>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-64">
-              <img alt="Mapa de la clínica" class="w-full h-full object-cover grayscale contrast-125"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"/>
-            </div>
-          </div>
-          <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
-            <form id="contact-form" class="flex flex-col gap-6" onsubmit="handleSubmit(event)">
-              <div>
-                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Nombre Completo</label>
-                <input required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="Ej. Ana García" type="text"/>
-              </div>
-              <div>
-                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Correo Electrónico</label>
-                <input required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="ana@ejemplo.com" type="email"/>
-              </div>
-              <div>
-                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Teléfono (opcional)</label>
-                <input class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="+34 600 000 000" type="tel"/>
-              </div>
-              <div>
-                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Mensaje</label>
-                <textarea required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="Cuéntanos cómo podemos ayudarte..." rows="4"></textarea>
-              </div>
-              <button type="submit" class="w-full bg-primary text-white font-black py-4 rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/20">
-                Enviar Mensaje
-              </button>
-              <div id="form-success" class="hidden text-center text-green-600 font-semibold bg-green-50 py-3 rounded-lg">
-                ¡Mensaje enviado! Te contactaremos pronto.
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-slate-900 text-white py-16 px-6 md:px-20 border-t border-slate-800">
-    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-      <div class="flex flex-col gap-4 col-span-1 md:col-span-2">
-        <div class="flex items-center gap-3 text-white">
-          <span class="material-symbols-outlined text-3xl">footprint</span>
-          <h2 class="text-xl font-bold tracking-tight">Podo in Balance</h2>
-        </div>
-        <p class="text-slate-400 text-sm max-w-sm leading-relaxed">Cuidamos de tu pisada para mejorar tu calidad de vida. Salud podológica de vanguardia en el corazón de la ciudad.</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-6 text-white uppercase text-xs tracking-widest">Navegación</h4>
-        <ul class="flex flex-col gap-4 text-slate-400 text-sm">
-          <li><a class="hover:text-white transition-colors" href="index.html">Inicio</a></li>
-          <li><a class="hover:text-white transition-colors" href="#services">Servicios</a></li>
-          <li><a class="hover:text-white transition-colors" href="el-centro.html">El Centro</a></li>
-          <li><a class="hover:text-white transition-colors" href="vanessa-montero.html">Equipo</a></li>
-          <li><a class="hover:text-white transition-colors" href="#contact">Contacto</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold mb-6 text-white uppercase text-xs tracking-widest">Legal</h4>
-        <ul class="flex flex-col gap-4 text-slate-400 text-sm">
-          <li><a class="hover:text-white transition-colors" href="#">Aviso Legal</a></li>
-          <li><a class="hover:text-white transition-colors" href="#">Política de Privacidad</a></li>
-          <li><a class="hover:text-white transition-colors" href="#">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="max-w-[1200px] mx-auto mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-slate-500 text-xs">© 2025 Podo in Balance. Todos los derechos reservados.</p>
-      <div class="flex gap-6">
-        <a class="text-slate-400 hover:text-white transition-colors" href="#">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a class="text-slate-400 hover:text-white transition-colors" href="#">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-        </a>
-      </div>
-    </div>
-  </footer>
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="document.getElementById('mobileNav').classList.remove('open')">&times;</button>
+  <a href="index.html">Información</a>
+  <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Servicios</a>
+  <a href="#">Blog</a>
+  <a href="vanessa-montero.html">Equipo</a>
+  <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')">Contacto</a>
 </div>
 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Encuentra tu equilibrio</div>
+    <h1 class="hero-title">
+      Podología y<br>postura en Elda.<br>
+      Con método.<br>Con claridad.
+    </h1>
+    <a href="#contact" class="hero-cta">
+      Solicitar una cita
+      <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+    </a>
+  </div>
+  <div class="hero-image-wrapper">
+    <div class="hero-image-frame">
+      <img alt="Podóloga profesional sonriendo"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
+      <div class="dots-pattern">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SECTION -->
+<section class="trust-section">
+  <div class="trust-features">
+    <div class="trust-feature">
+      <div class="trust-icon">
+        <span class="material-symbols-outlined">verified</span>
+      </div>
+      <div class="trust-feature-text">100% Satisfacción</div>
+    </div>
+    <div class="trust-feature">
+      <div class="trust-icon">
+        <span class="material-symbols-outlined">clinical_notes</span>
+      </div>
+      <div class="trust-feature-text">Criterio clínico</div>
+    </div>
+    <div class="trust-feature">
+      <div class="trust-icon">
+        <span class="material-symbols-outlined">biotech</span>
+      </div>
+      <div class="trust-feature-text">Tecnología moderna</div>
+    </div>
+  </div>
+  <div class="trust-right">
+    <div class="trust-right-content">
+      <img class="trust-right-img" alt="Tratamiento podológico"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"/>
+      <h3>Podología postural y equilibrio corporal en Elda</h3>
+      <div class="trust-signature">
+        <div class="trust-signature-avatar">VM</div>
+        <div class="trust-signature-name">Vanessa Montero</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-header">
+    <div class="services-badge">Lo que hacemos</div>
+    <h2>En qué podemos ayudarte</h2>
+  </div>
+  <div class="services-tabs">
+    <button class="services-tab active" onclick="switchTab(this)">Posturología</button>
+    <button class="services-tab" onclick="switchTab(this)">Podología</button>
+    <button class="services-tab" onclick="switchTab(this)">Cirugía</button>
+    <button class="services-tab" onclick="switchTab(this)">Plantillas</button>
+  </div>
+  <div class="services-content">
+    <img class="services-main-image" alt="Posturología"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"/>
+    <p class="services-description">Posturología</p>
+    <div class="services-grid">
+      <div class="services-grid-item">
+        <img alt="Tratamiento 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
+        <div class="overlay"><span>10 problemas posturales más comunes</span></div>
+      </div>
+      <div class="services-grid-item">
+        <img alt="Tratamiento 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"/>
+        <div class="overlay"><span>Las zapatillas más recomendadas</span></div>
+      </div>
+      <div class="services-grid-item">
+        <img alt="Tratamiento 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"/>
+        <div class="overlay"><span>Terapia con infrarrojos</span></div>
+      </div>
+      <div class="services-grid-item">
+        <img alt="Tratamiento 4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
+        <div class="overlay"><span>Nuevas técnicas podológicas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <h2>¿Por Qué Elegirnos?</h2>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">
+        <span class="material-symbols-outlined">person</span>
+      </div>
+      <h4>Atención personalizada</h4>
+      <p>Cada paciente recibe un plan de tratamiento único y adaptado a sus necesidades.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">
+        <span class="material-symbols-outlined">straighten</span>
+      </div>
+      <h4>Especialización en postura</h4>
+      <p>Enfoque integral que conecta la salud de tus pies con tu bienestar postural.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">
+        <span class="material-symbols-outlined">science</span>
+      </div>
+      <h4>Análisis con criterio</h4>
+      <p>Diagnóstico profesional basado en evidencia y tecnología de última generación.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">
+        <span class="material-symbols-outlined">trending_up</span>
+      </div>
+      <h4>Método fiable y progresivo</h4>
+      <p>Resultados sostenibles con un método paso a paso que evoluciona contigo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="team-inner">
+    <div class="team-image-area">
+      <img class="team-photo" alt="Vanessa Montero - Podóloga"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
+      <div class="team-card">
+        <h4>Judith Villar</h4>
+        <p>Podóloga colegiada</p>
+      </div>
+    </div>
+    <div class="team-info">
+      <h3>Experiencia profesional, dedicación y confianza</h3>
+      <p>Soy podóloga colegiada, especializada en posturología y biomecánica del pie. Mi objetivo es ayudarte a recuperar el equilibrio de tu cuerpo desde la base: tus pies.</p>
+      <p>Tras años de experiencia clínica, he desarrollado un método propio que combina la podología tradicional con técnicas posturales avanzadas para ofrecer resultados duraderos.</p>
+      <a href="vanessa-montero.html" class="team-cta">
+        Conoce más sobre mí
+        <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-header" style="max-width:1100px;margin-left:auto;margin-right:auto;margin-bottom:48px;">
+    <div>
+      <div class="testimonials-badge">Testimonios</div>
+      <h2>Lo que nuestros<br>pacientes opinan</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+      </div>
+      <p>"El estudio biomecánico cambió mi forma de correr. Las plantillas personalizadas son comodísimas y han desaparecido mis molestias en la rodilla."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">JP</div>
+        <div>
+          <div class="testimonial-name">Juan Pérez</div>
+          <div class="testimonial-role">Corredor amateur</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+      </div>
+      <p>"Excelente trato y profesionalidad. Me operaron de una uña encarnada y el proceso fue rápido, sin dolor y con un seguimiento impecable."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MG</div>
+        <div>
+          <div class="testimonial-name">Marta García</div>
+          <div class="testimonial-role">Paciente</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;color:#FBBF24">star</span>
+      </div>
+      <p>"Llevé a mi hijo por un problema de pisada y la explicación fue clarísima. El centro es moderno y el personal muy atento con los niños."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RC</div>
+        <div>
+          <div class="testimonial-name">Ricardo Casal</div>
+          <div class="testimonial-role">Padre de paciente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:8px;">
+        <div class="logo-icon" style="background:white;color:var(--purple);">Pb</div>
+        <div style="color:white;font-weight:700;font-size:16px;">Podo in Balance</div>
+      </div>
+      <p>Clínica de podología y postura en Elda. Tratamientos personalizados y tecnología avanzada para tu bienestar. Colegiada nº 1234.</p>
+    </div>
+    <div>
+      <h4>Nuestros servicios</h4>
+      <ul>
+        <li><a href="#">Podología clínica</a></li>
+        <li><a href="#">Estudio biomecánico</a></li>
+        <li><a href="#">Cirugía ungueal</a></li>
+        <li><a href="#">Plantillas a medida</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Horarios</h4>
+      <ul>
+        <li><a href="#">Lun - Vie: 9:00 - 20:00</a></li>
+        <li><a href="#">Sábados: 10:00 - 14:00</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Nuestros canales</h4>
+      <ul>
+        <li><a href="#">+34 912 70 10 07</a></li>
+        <li><a href="#">info@podoinbalance.com</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Podo in Balance. Todos los derechos reservados.</p>
+    <div class="footer-social">
+      <a href="#">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="#">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('open');
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    document.getElementById('form-success').classList.remove('hidden');
-    e.target.reset();
-    setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 5000);
+  function switchTab(el) {
+    document.querySelectorAll('.services-tab').forEach(function(tab) {
+      tab.classList.remove('active');
+    });
+    el.classList.add('active');
   }
 </script>
 </body>

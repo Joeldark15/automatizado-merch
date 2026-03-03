@@ -1,406 +1,339 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Automatizado Merch — Premium underground brand store" />
-  <title>Automatizado Merch</title>
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#080808" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Automatizado" />
-  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            void: '#080808',
-            card: '#111111',
-            border: '#1E1E1E',
-            accent: '#7B2FFF',
-            'accent-light': '#9B5FFF',
-            silver: '#A0A0A0',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Podo in Balance - Podología Avanzada</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#0056b2",
+          "background-light": "#f5f7f8",
+          "background-dark": "#0f1923",
         },
+        fontFamily: { "display": ["Inter"] },
+        borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
       },
-    };
-  </script>
-
-  <!-- App styles -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <style>
-    /* Safe area insets for notched phones */
-    body {
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-    #bottom-bar {
-      padding-bottom: env(safe-area-inset-bottom);
-      height: calc(64px + env(safe-area-inset-bottom));
-    }
-  </style>
-</head>
-<body class="bg-void text-white overflow-hidden">
-
-<!-- ======================== APP SHELL ======================== -->
-<div id="app">
-
-  <!-- ======== SCREEN: HOME ======== -->
-  <div id="screen-home" class="screen">
-    <!-- Header -->
-    <header style="position:sticky;top:0;z-index:50;background:rgba(8,8,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid #1E1E1E;height:56px;display:flex;align-items:center;padding:0 16px;">
-      <span style="font-size:18px;font-weight:900;letter-spacing:-0.02em;">AUTOMATIZADO</span>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:16px;">
-        <button onclick="App.navigate('catalog','forward')" style="color:#A0A0A0;background:none;border:none;cursor:pointer;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-        <button onclick="App.navigate('cart','forward')" style="position:relative;color:#A0A0A0;background:none;border:none;cursor:pointer;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- Hero -->
-    <section style="padding:28px 16px 0;">
-      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(123,47,255,0.12);border:1px solid rgba(123,47,255,0.25);border-radius:100px;padding:5px 12px;margin-bottom:20px;">
-        <span style="width:6px;height:6px;background:#7B2FFF;border-radius:50%;animation:pulse 2s infinite;"></span>
-        <span style="font-size:11px;font-weight:600;color:#9B5FFF;text-transform:uppercase;letter-spacing:0.1em;">Nueva colección 2025</span>
-      </div>
-      <h1 style="font-size:36px;font-weight:900;line-height:1.05;letter-spacing:-0.03em;margin-bottom:12px;">
-        Viste el<br/>
-        <span style="color:#7B2FFF;text-shadow:0 0 30px rgba(123,47,255,0.5);">vacío.</span>
-      </h1>
-      <p style="color:#A0A0A0;font-size:15px;line-height:1.5;margin-bottom:24px;max-width:300px;">
-        Merch underground para los que construyen en silencio. Calidad sin concesiones.
-      </p>
-      <button onclick="App.navigate('catalog','forward')" class="btn-primary" style="padding:14px 28px;font-size:15px;font-weight:700;border:none;cursor:pointer;border-radius:8px;letter-spacing:0.01em;">
-        Explorar colección →
-      </button>
-    </section>
-
-    <!-- Featured product -->
-    <section style="padding:32px 16px 0;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <h2 style="font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Destacado</h2>
-        <button onclick="App.navigate('catalog','forward')" style="font-size:13px;color:#7B2FFF;font-weight:500;background:none;border:none;cursor:pointer;">Ver todo →</button>
-      </div>
-
-      <div class="card glow-violet-sm" onclick="App.openProduct(1)" style="cursor:pointer;overflow:hidden;transition:transform 0.2s;" onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform=''" ontouchstart="this.style.transform='scale(0.98)'" ontouchend="this.style.transform=''">
-        <div style="height:240px;background:linear-gradient(135deg,#0f0f1a 0%,#1a0a2e 60%,#2d1060 100%);display:flex;align-items:center;justify-content:center;font-size:96px;position:relative;">
-          👕
-          <div style="position:absolute;top:12px;left:12px;background:#7B2FFF;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:0.06em;">BESTSELLER</div>
-        </div>
-        <div style="padding:16px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <div>
-              <h3 style="font-size:16px;font-weight:700;margin-bottom:2px;">Void Oversized Tee</h3>
-              <p style="font-size:13px;color:#A0A0A0;">320gsm · Reflective print</p>
-            </div>
-            <span style="font-size:22px;font-weight:800;color:#7B2FFF;">$49</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Recent drops horizontal scroll -->
-    <section style="padding:28px 0 0;">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:0 16px;margin-bottom:16px;">
-        <h2 style="font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Nuevos drops</h2>
-        <button onclick="App.navigate('catalog','forward')" style="font-size:13px;color:#7B2FFF;font-weight:500;background:none;border:none;cursor:pointer;">Ver todo →</button>
-      </div>
-      <div style="display:flex;gap:12px;overflow-x:auto;padding:0 16px 8px;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
-        <!-- Electric Violet Hoodie -->
-        <div class="card" onclick="App.openProduct(2)" style="flex-shrink:0;width:160px;cursor:pointer;overflow:hidden;" ontouchstart="this.style.opacity='0.8'" ontouchend="this.style.opacity=''">
-          <div style="height:140px;background:linear-gradient(135deg,#1a0a2e 0%,#2d1060 100%);display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;">
-            🧥
-            <div style="position:absolute;top:8px;left:8px;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.4);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;color:#9B5FFF;">NEW</div>
-          </div>
-          <div style="padding:10px;">
-            <p style="font-size:13px;font-weight:600;margin-bottom:2px;">Electric Violet Hoodie</p>
-            <p style="font-size:14px;font-weight:800;color:#7B2FFF;">$89</p>
-          </div>
-        </div>
-        <!-- Noise Cargo Pants -->
-        <div class="card" onclick="App.openProduct(4)" style="flex-shrink:0;width:160px;cursor:pointer;overflow:hidden;" ontouchstart="this.style.opacity='0.8'" ontouchend="this.style.opacity=''">
-          <div style="height:140px;background:linear-gradient(135deg,#111a0f 0%,#1a2a10 100%);display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;">
-            👖
-            <div style="position:absolute;top:8px;left:8px;background:rgba(255,180,0,0.15);border:1px solid rgba(255,180,0,0.35);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;color:#FFB400;">LIMITED</div>
-          </div>
-          <div style="padding:10px;">
-            <p style="font-size:13px;font-weight:600;margin-bottom:2px;">Noise Cargo Pants</p>
-            <p style="font-size:14px;font-weight:800;color:#7B2FFF;">$119</p>
-          </div>
-        </div>
-        <!-- Static Shoulder Bag -->
-        <div class="card" onclick="App.openProduct(5)" style="flex-shrink:0;width:160px;cursor:pointer;overflow:hidden;" ontouchstart="this.style.opacity='0.8'" ontouchend="this.style.opacity=''">
-          <div style="height:140px;background:linear-gradient(135deg,#0a0a1a 0%,#1a1030 100%);display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;">
-            🎒
-            <div style="position:absolute;top:8px;left:8px;background:rgba(123,47,255,0.2);border:1px solid rgba(123,47,255,0.4);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;color:#9B5FFF;">NEW</div>
-          </div>
-          <div style="padding:10px;">
-            <p style="font-size:13px;font-weight:600;margin-bottom:2px;">Static Shoulder Bag</p>
-            <p style="font-size:14px;font-weight:800;color:#7B2FFF;">$64</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Brand stats -->
-    <section style="padding:28px 16px;">
-      <div style="background:#111;border:1px solid #1E1E1E;border-radius:16px;padding:24px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;text-align:center;">
-          <div>
-            <p style="font-size:24px;font-weight:900;color:#7B2FFF;line-height:1;margin-bottom:4px;">12K+</p>
-            <p style="font-size:11px;color:#A0A0A0;font-weight:500;letter-spacing:0.04em;">Clientes</p>
-          </div>
-          <div style="border-left:1px solid #1E1E1E;border-right:1px solid #1E1E1E;">
-            <p style="font-size:24px;font-weight:900;color:#7B2FFF;line-height:1;margin-bottom:4px;">100%</p>
-            <p style="font-size:11px;color:#A0A0A0;font-weight:500;letter-spacing:0.04em;">Algodón</p>
-          </div>
-          <div>
-            <p style="font-size:24px;font-weight:900;color:#7B2FFF;line-height:1;margin-bottom:4px;">∅</p>
-            <p style="font-size:11px;color:#A0A0A0;font-weight:500;letter-spacing:0.04em;">Ruido</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div><!-- /screen-home -->
-
-
-  <!-- ======== SCREEN: CATALOG ======== -->
-  <div id="screen-catalog" class="screen">
-    <!-- Header -->
-    <header style="position:sticky;top:0;z-index:50;background:rgba(8,8,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid #1E1E1E;height:56px;display:flex;align-items:center;padding:0 16px;">
-      <button onclick="App.goBack()" style="display:flex;align-items:center;gap:4px;color:#A0A0A0;background:none;border:none;cursor:pointer;margin-right:12px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <span style="font-size:16px;font-weight:700;">Catálogo</span>
-      <button onclick="App.navigate('cart','forward')" style="margin-left:auto;position:relative;color:#A0A0A0;background:none;border:none;cursor:pointer;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-        <span id="cart-badge-catalog" class="cart-badge" style="display:none;">0</span>
-      </button>
-    </header>
-
-    <!-- Filters -->
-    <div style="display:flex;gap:8px;overflow-x:auto;padding:14px 16px;scrollbar-width:none;">
-      <button class="filter-chip active" data-filter="all" onclick="App.setFilter('all');updateCatalogBadge()">Todo</button>
-      <button class="filter-chip" data-filter="tops" onclick="App.setFilter('tops')">Tops</button>
-      <button class="filter-chip" data-filter="bottoms" onclick="App.setFilter('bottoms')">Bottoms</button>
-      <button class="filter-chip" data-filter="accessories" onclick="App.setFilter('accessories')">Accesorios</button>
-    </div>
-
-    <!-- Product grid -->
-    <div id="catalog-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;"></div>
-  </div><!-- /screen-catalog -->
-
-
-  <!-- ======== SCREEN: PRODUCT ======== -->
-  <div id="screen-product" class="screen">
-    <!-- Rendered dynamically by app.js -->
-  </div><!-- /screen-product -->
-
-
-  <!-- ======== SCREEN: CART ======== -->
-  <div id="screen-cart" class="screen">
-    <!-- Header -->
-    <header style="position:sticky;top:0;z-index:50;background:rgba(8,8,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid #1E1E1E;height:56px;display:flex;align-items:center;padding:0 16px;">
-      <button onclick="App.goBack()" style="display:flex;align-items:center;gap:4px;color:#A0A0A0;background:none;border:none;cursor:pointer;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <span style="font-size:16px;font-weight:700;margin-left:12px;">Carrito</span>
-    </header>
-    <div id="cart-content"></div>
-  </div><!-- /screen-cart -->
-
-
-  <!-- ======== SCREEN: CHECKOUT ======== -->
-  <div id="screen-checkout" class="screen">
-    <!-- Header -->
-    <header style="position:sticky;top:0;z-index:50;background:rgba(8,8,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid #1E1E1E;height:56px;display:flex;align-items:center;padding:0 16px;">
-      <button onclick="App.navigate('cart','back')" style="display:flex;align-items:center;gap:4px;color:#A0A0A0;background:none;border:none;cursor:pointer;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <span style="font-size:16px;font-weight:700;margin-left:12px;">Checkout</span>
-    </header>
-
-    <div id="checkout-content" style="padding:20px 16px;">
-      <!-- Step indicator -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:28px;">
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div style="width:24px;height:24px;background:#7B2FFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div>
-          <span style="font-size:12px;font-weight:600;color:#7B2FFF;">Dirección</span>
-        </div>
-        <div style="width:24px;height:1px;background:#1E1E1E;"></div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div style="width:24px;height:24px;background:#1E1E1E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#4A4A4A;">2</div>
-          <span style="font-size:12px;font-weight:500;color:#4A4A4A;">Pago</span>
-        </div>
-        <div style="width:24px;height:1px;background:#1E1E1E;"></div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div style="width:24px;height:24px;background:#1E1E1E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#4A4A4A;">3</div>
-          <span style="font-size:12px;font-weight:500;color:#4A4A4A;">Confirmar</span>
-        </div>
-      </div>
-
-      <!-- Shipping address -->
-      <div style="margin-bottom:24px;">
-        <h3 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#A0A0A0;margin-bottom:14px;">Dirección de envío</h3>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;">
-            <div style="flex:1;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Nombre</label>
-              <input class="input-field" type="text" placeholder="María" />
-            </div>
-            <div style="flex:1;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Apellido</label>
-              <input class="input-field" type="text" placeholder="García" />
-            </div>
-          </div>
-          <div>
-            <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Dirección</label>
-            <input class="input-field" type="text" placeholder="Calle Gran Vía, 28" />
-          </div>
-          <div style="display:flex;gap:10px;">
-            <div style="flex:1;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Ciudad</label>
-              <input class="input-field" type="text" placeholder="Madrid" />
-            </div>
-            <div style="flex:0 0 100px;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">CP</label>
-              <input class="input-field" type="text" placeholder="28001" inputmode="numeric" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Payment -->
-      <div style="margin-bottom:28px;">
-        <h3 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#A0A0A0;margin-bottom:14px;">Pago</h3>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div>
-            <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Número de tarjeta</label>
-            <input class="input-field" type="text" placeholder="4242 4242 4242 4242" inputmode="numeric" maxlength="19" />
-          </div>
-          <div style="display:flex;gap:10px;">
-            <div style="flex:1;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">Fecha exp.</label>
-              <input class="input-field" type="text" placeholder="MM/AA" inputmode="numeric" maxlength="5" />
-            </div>
-            <div style="flex:0 0 100px;">
-              <label style="font-size:12px;color:#4A4A4A;display:block;margin-bottom:4px;">CVV</label>
-              <input class="input-field" type="text" placeholder="123" inputmode="numeric" maxlength="3" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Payment methods -->
-      <div style="display:flex;gap:8px;margin-bottom:24px;">
-        <div class="card" style="flex:1;padding:12px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;border-color:#7B2FFF;">
-          <span style="font-size:16px;">💳</span>
-          <span style="font-size:13px;font-weight:600;color:#7B2FFF;">Tarjeta</span>
-        </div>
-        <div class="card" style="flex:1;padding:12px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
-          <span style="font-size:16px;">📱</span>
-          <span style="font-size:13px;font-weight:500;color:#A0A0A0;">Apple Pay</span>
-        </div>
-        <div class="card" style="flex:1;padding:12px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;">
-          <span style="font-size:16px;">🅿️</span>
-          <span style="font-size:13px;font-weight:500;color:#A0A0A0;">PayPal</span>
-        </div>
-      </div>
-
-      <!-- Place order -->
-      <button class="btn-primary" onclick="App.placeOrder()" style="width:100%;padding:17px;font-size:16px;font-weight:800;border:none;cursor:pointer;border-radius:8px;letter-spacing:0.01em;">
-        Confirmar pedido
-      </button>
-
-      <!-- Security note -->
-      <p style="text-align:center;font-size:12px;color:#4A4A4A;margin-top:12px;">
-        🔒 Pago cifrado SSL · Datos seguros
-      </p>
-    </div>
-  </div><!-- /screen-checkout -->
-
-</div><!-- /app -->
-
-
-<!-- ======================== BOTTOM BAR ======================== -->
-<nav id="bottom-bar">
-  <!-- Home -->
-  <button class="tab-btn active" data-screen="home" onclick="App.navigate('home','back')">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-    Inicio
-  </button>
-  <!-- Catalog -->
-  <button class="tab-btn" data-screen="catalog" onclick="App.navigate('catalog','forward')">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-    Catálogo
-  </button>
-  <!-- Cart -->
-  <button class="tab-btn" data-screen="cart" onclick="App.navigate('cart','forward')" style="position:relative;">
-    <span style="position:relative;display:inline-block;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-      <span id="cart-badge-nav" style="position:absolute;top:-6px;right:-6px;background:#7B2FFF;color:white;border-radius:50%;width:16px;height:16px;font-size:10px;font-weight:700;display:none;align-items:center;justify-content:center;">0</span>
-    </span>
-    Carrito
-  </button>
-</nav>
-
-
-<!-- ======================== SCRIPTS ======================== -->
-<script src="app.js"></script>
-<script>
-  // Sync all cart badges
-  const _origUpdateCartBadge = App.init;
-  function syncAllBadges() {
-    const count = App.state.cart.reduce((s, i) => s + i.qty, 0);
-    ['cart-badge', 'cart-badge-catalog', 'cart-badge-nav'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.textContent = count;
-        el.style.display = count > 0 ? 'flex' : 'none';
-      }
-    });
+    },
   }
+</script>
+<style>
+  .nav-active { color: #0056b2 !important; font-weight: 700; }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
 
-  // Patch addToCart and updateQty to sync all badges
-  const _origAddToCart = App.addToCart.bind(App);
-  const _origUpdateQty = App.updateQty.bind(App);
+  <!-- HEADER -->
+  <header class="flex items-center justify-between whitespace-nowrap border-b border-slate-200 dark:border-slate-800 px-6 md:px-20 py-4 bg-white dark:bg-slate-900 sticky top-0 z-50">
+    <a href="index.html" class="flex items-center gap-3 text-primary">
+      <span class="material-symbols-outlined text-4xl">footprint</span>
+      <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">Podo in Balance</h2>
+    </a>
+    <div class="hidden md:flex flex-1 justify-end gap-10 items-center">
+      <nav class="flex items-center gap-8">
+        <a class="nav-active text-sm" href="index.html">Inicio</a>
+        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#services">Servicios</a>
+        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="el-centro.html">El Centro</a>
+        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="vanessa-montero.html">Equipo</a>
+        <a class="text-slate-700 dark:text-slate-200 text-sm font-semibold hover:text-primary transition-colors" href="#contact">Contacto</a>
+      </nav>
+      <a href="#contact" class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-all shadow-sm">
+        <span class="truncate">Pedir Cita</span>
+      </a>
+    </div>
+    <button id="menu-btn" class="md:hidden" onclick="toggleMenu()">
+      <span class="material-symbols-outlined text-slate-900 dark:text-white">menu</span>
+    </button>
+  </header>
 
-  // Override navigate to sync badges on each transition
-  const _origNavigate = App.navigate.bind(App);
-  App.navigate = function(screenId, direction) {
-    _origNavigate(screenId, direction);
-    setTimeout(syncAllBadges, 50);
-  };
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="flex-col bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 gap-4 md:hidden">
+    <a class="text-primary font-bold" href="index.html">Inicio</a>
+    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="#services">Servicios</a>
+    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="el-centro.html">El Centro</a>
+    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="vanessa-montero.html">Equipo</a>
+    <a class="text-slate-700 dark:text-slate-200 font-semibold hover:text-primary" href="#contact">Contacto</a>
+    <a href="#contact" class="bg-primary text-white text-center py-2 px-4 rounded-lg font-bold">Pedir Cita</a>
+  </div>
 
-  // Pulse animation for "new collection" badge
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-  `;
-  document.head.appendChild(style);
+  <main>
+    <!-- HERO -->
+    <section class="relative">
+      <div class="flex min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat items-start justify-center px-6 md:px-20 py-20 relative overflow-hidden"
+        style='background-image: linear-gradient(rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t");'>
+        <div class="flex flex-col gap-4 max-w-[700px] z-10">
+          <h1 class="text-white text-5xl md:text-6xl font-black leading-tight tracking-tight">
+            Recupera el equilibrio de tus pies
+          </h1>
+          <p class="text-slate-100 text-lg md:text-xl font-normal leading-relaxed">
+            Tratamientos especializados para caminar con salud y bienestar. Expertos en biomecánica y cuidado clínico integral.
+          </p>
+          <div class="mt-4">
+            <a href="#contact" class="inline-flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-8 bg-primary text-white text-lg font-black shadow-xl hover:scale-105 transition-transform">
+              Pedir Cita
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="py-20 px-6 md:px-20 bg-background-light dark:bg-background-dark" id="services">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="mb-12 text-center">
+          <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-4">Nuestros Servicios Especializados</h2>
+          <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl">medical_services</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Podología Clínica</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Tratamiento profesional de durezas, helomas, papilomas y afecciones ungueales para mantener la salud diaria de tus pies.</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl">directions_walk</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Estudio Biomecánico</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Análisis digital avanzado de la marcha y la pisada para corregir posturas y diseñar plantillas personalizadas.</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-primary bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl">surgical</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-slate-900 dark:text-white text-xl font-bold">Cirugía Ungueal</h3>
+              <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Procedimientos quirúrgicos ambulatorios mínimamente invasivos para la solución definitiva de uñas encarnadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section class="py-20 px-6 md:px-20" id="about">
+      <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="relative group">
+          <div class="absolute -inset-4 bg-primary/10 rounded-2xl transform rotate-3 group-hover:rotate-0 transition-transform"></div>
+          <div class="relative aspect-[4/5] bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden shadow-xl">
+            <img alt="Podóloga profesional" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"/>
+          </div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <span class="text-primary font-bold uppercase tracking-widest text-sm">Sobre Nosotros</span>
+          <h2 class="text-slate-900 dark:text-white text-4xl font-black leading-tight">Expertos en Salud Podológica</h2>
+          <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+            En Podo in Balance, nuestra filosofía se centra en devolver la armonía a tu pisada. Entendemos que unos pies sanos son la base de un cuerpo equilibrado.
+          </p>
+          <p class="text-slate-700 dark:text-slate-300 text-lg leading-relaxed">
+            Combinamos tecnología de diagnóstico de vanguardia con un trato humano y personalizado. Cada tratamiento es único, diseñado para asegurar que cada paso que des sea con total bienestar y sin dolor.
+          </p>
+          <div class="grid grid-cols-2 gap-6 pt-4">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
+              <span class="font-semibold">Atención Integral</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
+              <span class="font-semibold">Tecnología 3D</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
+              <span class="font-semibold">Cuidado Humano</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-xl">check_circle</span>
+              <span class="font-semibold">Post-operativo</span>
+            </div>
+          </div>
+          <a href="el-centro.html" class="inline-flex items-center gap-2 text-primary font-bold hover:underline mt-2">
+            Conoce nuestro centro <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="py-24 px-6 md:px-20 bg-primary text-white">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Lo que dicen nuestros pacientes</h2>
+          <p class="text-blue-100 font-medium">La confianza de quienes ya caminan sin dolor</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <div class="flex text-yellow-400 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-white italic mb-6">"El estudio biomecánico cambió mi forma de correr. Las plantillas personalizadas son comodísimas y han desaparecido mis molestias en la rodilla."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">JP</div>
+              <span class="font-bold">Juan Pérez</span>
+            </div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <div class="flex text-yellow-400 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-white italic mb-6">"Excelente trato y profesionalidad. Me operaron de una uña encarnada y el proceso fue rápido, sin dolor y con un seguimiento impecable."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">MG</div>
+              <span class="font-bold">Marta García</span>
+            </div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <div class="flex text-yellow-400 mb-4">
+              <span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span><span class="material-symbols-outlined fill-1">star</span>
+            </div>
+            <p class="text-white italic mb-6">"Llevé a mi hijo por un problema de pisada y la explicación fue clarísima. El centro es moderno y el personal muy atento con los niños."</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold text-white">RC</div>
+              <span class="font-bold">Ricardo Casal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="py-24 px-6 md:px-20 bg-gradient-to-br from-blue-50 to-white dark:from-slate-900 dark:to-background-dark" id="contact">
+      <div class="max-w-[1200px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="flex flex-col gap-8">
+            <div>
+              <h2 class="text-slate-900 dark:text-white text-3xl font-bold mb-4">Contacta con nosotros</h2>
+              <p class="text-slate-600 dark:text-slate-400">Resuelve tus dudas o solicita tu primera visita informativa.</p>
+            </div>
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <span class="material-symbols-outlined text-primary">location_on</span>
+                <div>
+                  <p class="font-bold">Dirección</p>
+                  <p class="text-slate-600 dark:text-slate-400 text-sm">Calle de la Salud, 12, 28013 Madrid</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="material-symbols-outlined text-primary">call</span>
+                <div>
+                  <p class="font-bold">Teléfono</p>
+                  <p class="text-slate-600 dark:text-slate-400 text-sm">+34 912 345 678</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="material-symbols-outlined text-primary">schedule</span>
+                <div>
+                  <p class="font-bold">Horario</p>
+                  <p class="text-slate-600 dark:text-slate-400 text-sm">Lunes - Viernes: 09:00 - 20:00</p>
+                  <p class="text-slate-600 dark:text-slate-400 text-sm">Sábados: 10:00 - 14:00</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 h-64">
+              <img alt="Mapa de la clínica" class="w-full h-full object-cover grayscale contrast-125"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"/>
+            </div>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
+            <form id="contact-form" class="flex flex-col gap-6" onsubmit="handleSubmit(event)">
+              <div>
+                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Nombre Completo</label>
+                <input required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="Ej. Ana García" type="text"/>
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Correo Electrónico</label>
+                <input required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="ana@ejemplo.com" type="email"/>
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Teléfono (opcional)</label>
+                <input class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="+34 600 000 000" type="tel"/>
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2 text-slate-700 dark:text-slate-300">Mensaje</label>
+                <textarea required class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-800 focus:ring-2 focus:ring-primary focus:border-primary transition-all p-3" placeholder="Cuéntanos cómo podemos ayudarte..." rows="4"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-primary text-white font-black py-4 rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/20">
+                Enviar Mensaje
+              </button>
+              <div id="form-success" class="hidden text-center text-green-600 font-semibold bg-green-50 py-3 rounded-lg">
+                ¡Mensaje enviado! Te contactaremos pronto.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-white py-16 px-6 md:px-20 border-t border-slate-800">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div class="flex flex-col gap-4 col-span-1 md:col-span-2">
+        <div class="flex items-center gap-3 text-white">
+          <span class="material-symbols-outlined text-3xl">footprint</span>
+          <h2 class="text-xl font-bold tracking-tight">Podo in Balance</h2>
+        </div>
+        <p class="text-slate-400 text-sm max-w-sm leading-relaxed">Cuidamos de tu pisada para mejorar tu calidad de vida. Salud podológica de vanguardia en el corazón de la ciudad.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-6 text-white uppercase text-xs tracking-widest">Navegación</h4>
+        <ul class="flex flex-col gap-4 text-slate-400 text-sm">
+          <li><a class="hover:text-white transition-colors" href="index.html">Inicio</a></li>
+          <li><a class="hover:text-white transition-colors" href="#services">Servicios</a></li>
+          <li><a class="hover:text-white transition-colors" href="el-centro.html">El Centro</a></li>
+          <li><a class="hover:text-white transition-colors" href="vanessa-montero.html">Equipo</a></li>
+          <li><a class="hover:text-white transition-colors" href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-6 text-white uppercase text-xs tracking-widest">Legal</h4>
+        <ul class="flex flex-col gap-4 text-slate-400 text-sm">
+          <li><a class="hover:text-white transition-colors" href="#">Aviso Legal</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Política de Privacidad</a></li>
+          <li><a class="hover:text-white transition-colors" href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-[1200px] mx-auto mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-slate-500 text-xs">© 2025 Podo in Balance. Todos los derechos reservados.</p>
+      <div class="flex gap-6">
+        <a class="text-slate-400 hover:text-white transition-colors" href="#">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a class="text-slate-400 hover:text-white transition-colors" href="#">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 5000);
+  }
 </script>
 </body>
 </html>

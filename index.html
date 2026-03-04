@@ -19,11 +19,12 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Montserrat',sans-serif; color:var(--black); background:var(--white); overflow-x:hidden; }
   a { text-decoration:none; color:inherit; }
+  img { max-width:100%; }
 
   /* ── Header ── */
   .header { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid rgba(0,0,0,0.1); }
   .header-inner { max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:90px; padding:0 2rem; }
-  .logo img { height:80px; filter:invert(1) hue-rotate(180deg); }
+  .logo img { height:70px; }
   .nav-links { display:flex; gap:48px; }
   .nav-links a { font-size:16px; font-weight:500; transition:color 0.2s; }
   .nav-links a:hover, .nav-links a.active { color:var(--purple); }
@@ -35,7 +36,7 @@
   /* ── Hero ── */
   .hero { position:relative; min-height:700px; display:flex; align-items:center; overflow:hidden; }
   .hero-bg { position:absolute; inset:0; background:linear-gradient(0deg,rgba(232,218,253,0.2),rgba(232,218,253,0.2)); z-index:0; }
-  .hero-bg img { width:100%; height:100%; object-fit:cover; opacity:0.25; }
+  .hero-bg img { width:100%; height:100%; object-fit:cover; opacity:0.2; }
   .hero-inner { position:relative; z-index:2; max-width:1400px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:2rem; width:100%; }
   .hero-text { max-width:600px; }
   .hero-tag { display:inline-flex; align-items:center; gap:0; margin-bottom:2rem; }
@@ -44,11 +45,11 @@
   .hero h1 { font-size:clamp(2.5rem,4.5vw,4rem); font-weight:900; line-height:1; margin-bottom:2rem; }
   .hero-btn { display:inline-block; background:var(--purple); color:var(--white); padding:16px 32px; font-weight:600; font-size:18px; transition:all 0.3s; }
   .hero-btn:hover { background:#7340d4; transform:translateY(-2px); }
-  .hero-image { position:relative; display:flex; justify-content:center; }
-  .hero-image img { max-height:600px; object-fit:contain; position:relative; z-index:2; }
+  .hero-image { position:relative; display:flex; flex-direction:column; align-items:center; }
+  .hero-image > img { max-height:580px; object-fit:contain; position:relative; z-index:2; }
   .hero-image::before { content:''; position:absolute; width:450px; height:450px; background:radial-gradient(circle,rgba(138,85,235,0.12) 0%,transparent 70%); border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); z-index:0; }
   .hero-pill { position:absolute; right:0; top:10%; width:140px; height:260px; border:2px solid var(--teal); border-radius:100px; z-index:1; }
-  .hero-social { display:flex; gap:12px; margin-top:2rem; justify-content:center; }
+  .hero-social { display:flex; gap:12px; margin-top:1rem; justify-content:center; position:relative; z-index:3; }
   .hero-social a { width:44px; height:44px; border:2px solid var(--purple); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--purple); transition:all 0.3s; }
   .hero-social a:hover { background:var(--purple); color:var(--white); }
   .hero-social a .material-symbols-outlined { font-size:20px; }
@@ -83,7 +84,7 @@
   .services-header h2 { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; }
   .services-card { position:relative; }
   .services-layers { position:relative; margin:0 auto; }
-  .services-layer-3 { background:rgba(48,196,178,0.6); padding:1.5rem; padding-top:2rem; border-radius:0; }
+  .services-layer-3 { background:rgba(48,196,178,0.6); padding:1.5rem; padding-top:2rem; }
   .services-layer-2 { background:rgba(48,196,178,0.8); padding:1rem; padding-top:1.5rem; }
   .services-layer-1 { background:var(--white); padding:2rem; }
   .services-tabs { display:flex; gap:0; margin-bottom:2rem; }
@@ -91,7 +92,7 @@
   .services-tab.active { background:var(--teal); }
   .services-tab:not(.active) { background:var(--purple); }
   .services-content { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
-  .services-content img { width:100%; height:300px; object-fit:cover; }
+  .services-content > img { width:100%; height:300px; object-fit:cover; }
   .services-content-text h3 { font-size:24px; font-weight:700; margin-bottom:1rem; }
   .services-content-text p { font-size:15px; line-height:1.5; color:#333; }
   .services-content-footer { margin-top:1.5rem; display:flex; gap:8px; }
@@ -101,8 +102,8 @@
   /* ── Gallery ── */
   .gallery { padding:3rem 0; display:flex; gap:12px; overflow:hidden; }
   .gallery-item { flex:1; min-width:0; height:300px; position:relative; overflow:hidden; }
-  .gallery-item img { width:100%; height:100%; object-fit:cover; filter:brightness(0.7); transition:all 0.5s; }
-  .gallery-item:hover img { transform:scale(1.05); filter:brightness(0.9); }
+  .gallery-item img { width:100%; height:100%; object-fit:cover; transition:all 0.5s; }
+  .gallery-item:hover img { transform:scale(1.05); }
   .gallery-item.ig { border:6px solid var(--teal); display:flex; align-items:center; justify-content:center; }
   .gallery-item.ig .material-symbols-outlined { position:absolute; z-index:2; font-size:48px; color:var(--teal); }
   .gallery-item.ig::after { content:'@podoinbalance'; position:absolute; z-index:2; bottom:16px; color:var(--white); font-size:13px; font-weight:600; letter-spacing:0.05em; }
@@ -114,10 +115,10 @@
   .why-us-header h2 { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; color:var(--teal); margin-bottom:3rem; }
   .why-us-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
   .why-us-item { display:flex; flex-direction:column; align-items:center; gap:1rem; }
-  .why-us-icon { position:relative; width:150px; height:150px; background:var(--purple); border-radius:50%; display:flex; align-items:center; justify-content:center; }
-  .why-us-icon img { width:80px; height:80px; object-fit:contain; filter:brightness(0) invert(1); }
+  .why-us-icon { position:relative; width:150px; height:150px; background:var(--purple); border-radius:50%; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .why-us-icon img { width:70%; height:70%; object-fit:contain; }
   .why-us-icon .material-symbols-outlined { font-size:60px; color:var(--white); }
-  .why-us-badge { position:absolute; top:-5px; right:-5px; width:45px; height:45px; background:var(--teal); border:3px solid var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--white); }
+  .why-us-badge { position:absolute; top:-5px; right:-5px; width:45px; height:45px; background:var(--teal); border:3px solid var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--white); font-weight:700; }
   .why-us-item h4 { font-size:18px; font-weight:900; margin-top:0.5rem; }
   .why-us-item p { font-size:14px; font-weight:400; line-height:1.5; color:#333; max-width:300px; }
 
@@ -135,8 +136,8 @@
   .testimonials-right-header { text-align:center; margin-bottom:2rem; }
   .testimonials-right-header small { display:block; color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
   .testimonials-right-header h2 { font-size:28px; font-weight:700; color:var(--white); }
-  .testimonials-right-card { padding:1rem; }
-  .testimonials-right-card img { width:100%; max-height:400px; object-fit:cover; border-radius:8px; }
+  .testimonials-right-img { text-align:center; }
+  .testimonials-right-img img { max-height:450px; object-fit:contain; }
 
   /* ── Footer ── */
   .footer { position:relative; padding:4rem 2rem 2rem; color:var(--white); }
@@ -188,7 +189,7 @@
 <!-- HEADER -->
 <header class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo"><img src="preview.webp" alt="Podo in Balance" style="height:70px;"/></a>
+    <a href="index.html" class="logo"><img src="imagenesParaReplicar/indexHtml/d31e9721085b9701161cdb40da93dcbd33c33857.png" alt="Podo in Balance"/></a>
     <nav class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="el-centro.html">El Centro</a>
@@ -215,7 +216,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><img src="preview(2).jpg" alt=""/></div>
+  <div class="hero-bg"><img src="imagenesParaReplicar/indexHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt=""/></div>
   <div class="hero-inner">
     <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
       <div class="hero-tag">
@@ -226,7 +227,7 @@
       <a href="#contact" class="hero-btn" data-aos="fade-up" data-aos-delay="300">Solicitar una cita</a>
     </div>
     <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
-      <img src="preview (1).webp" alt="Vanesa Montero"/>
+      <img src="imagenesParaReplicar/indexHtml/2ce6f5bd46b473ea50153951e20c41de0da3c8b9.png" alt="Vanesa Montero"/>
       <div class="hero-pill"></div>
       <div class="hero-social">
         <a href="#"><span class="material-symbols-outlined">chevron_left</span></a>
@@ -238,7 +239,7 @@
 
 <!-- ABOUT -->
 <section class="about">
-  <div class="about-bg"><img src="preview(2).jpg" alt="" style="opacity:0.08;"/></div>
+  <div class="about-bg"><img src="imagenesParaReplicar/indexHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt="" style="opacity:0.08;"/></div>
   <div class="about-inner">
     <div class="about-left" data-aos="fade-up" data-aos-duration="800">
       <div class="about-stat">100% Satisfacción</div>
@@ -247,14 +248,14 @@
     </div>
     <div class="about-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
       <div class="about-card-photo">
-        <img src="preview (4).webp" alt="Vanesa Montero"/>
+        <img src="imagenesParaReplicar/indexHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt="Vanesa Montero"/>
         <div class="about-card-photo-border"></div>
       </div>
       <div class="about-card-content">
         <h3>BIENVENIDO A PODOINBALANCE<span>Podología postural y equilibrio corporal en Elda</span></h3>
         <p>Trabajamos desde la podología y la postura para entender cómo se está organizando tu cuerpo. Analizamos apoyos, compensaciones y equilibrio para acompañarte con un método estructurado, claro y adaptado a ti.</p>
         <div class="about-signature">
-          <div class="about-avatar"><img src="preview (4).webp" alt="Vanesa"/></div>
+          <div class="about-avatar"><img src="imagenesParaReplicar/indexHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt="Vanesa"/></div>
           <span class="about-signature-name">Vanesa Montero</span>
         </div>
       </div>
@@ -264,7 +265,7 @@
 
 <!-- SERVICES -->
 <section class="services">
-  <div class="services-bg"><img src="preview(2).jpg" alt=""/></div>
+  <div class="services-bg"><img src="imagenesParaReplicar/indexHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt=""/></div>
   <div class="services-inner">
     <div class="services-header" data-aos="fade-up">
       <small>Nuestros Servicios</small>
@@ -282,15 +283,16 @@
                 <div class="services-tab">Plantillas</div>
               </div>
               <div class="services-content">
-                <img src="preview (5).webp" alt="Posturología"/>
+                <img src="imagenesParaReplicar/indexHtml/b859979c334e9d632fd9f2b5bdf066f164b652e0.png" alt="Posturología"/>
                 <div class="services-content-text">
                   <h3>Posturología</h3>
                   <p>Análisis biomecánico completo que identifica desequilibrios en tus apoyos y su impacto sobre tu postura.</p>
                   <p style="margin-top:1rem;">Es el primer paso para comprender cómo se organiza tu cuerpo y cómo esos patrones pueden estar generando dolor o compensaciones.</p>
                   <div class="services-content-footer" style="margin-top:1.5rem;">
-                    <img src="preview (5).webp" alt="Posturología"/>
-                    <img src="preview(2).jpg" alt="Podología"/>
-                    <img src="preview (4).webp" alt="Cirugía"/>
+                    <img src="imagenesParaReplicar/indexHtml/b859979c334e9d632fd9f2b5bdf066f164b652e0.png" alt="Posturología"/>
+                    <img src="imagenesParaReplicar/indexHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt="Podología"/>
+                    <img src="imagenesParaReplicar/indexHtml/f4b9060403e284e608849a39135120d955dbf96a.jpg" alt="Cirugía"/>
+                    <img src="imagenesParaReplicar/indexHtml/a27e8587ad5986781839fa4ee33619b27ee2cbc6.jpg" alt="Plantillas"/>
                   </div>
                 </div>
               </div>
@@ -302,14 +304,14 @@
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY (Instagram posts) -->
 <section class="gallery" data-aos="fade-up">
-  <div class="gallery-item"><img src="preview (4).webp" alt=""/></div>
-  <div class="gallery-item"><img src="preview(2).jpg" alt=""/></div>
-  <div class="gallery-item"><img src="preview (5).webp" alt=""/></div>
-  <div class="gallery-item"><img src="preview (7).webp" alt=""/></div>
+  <div class="gallery-item"><img src="imagenesParaReplicar/indexHtml/42c0e5148c296b5591298a8d8cdf8aa7f2061133.png" alt=""/></div>
+  <div class="gallery-item"><img src="imagenesParaReplicar/indexHtml/a289342c0c8a916e524dd83693f232144332c7fb.png" alt=""/></div>
+  <div class="gallery-item"><img src="imagenesParaReplicar/indexHtml/b6f187724e8dc505f235337a5caa0d46a6ccaf2b.png" alt=""/></div>
+  <div class="gallery-item"><img src="imagenesParaReplicar/indexHtml/04feb04dbb3997b2361d6dfdb752d130ce19d8a1.png" alt=""/></div>
   <div class="gallery-item ig">
-    <img src="preview (6).webp" alt="" style="filter:brightness(0.3);"/>
+    <img src="imagenesParaReplicar/indexHtml/cb7cb6ce6ea68ace1f26e0ec443ae8459251c5fd.png" alt="" style="filter:brightness(0.4);"/>
     <span class="material-symbols-outlined">photo_camera</span>
   </div>
 </section>
@@ -324,7 +326,7 @@
     <div class="why-us-grid">
       <div class="why-us-item" data-aos="fade-up" data-aos-delay="0">
         <div class="why-us-icon">
-          <span class="material-symbols-outlined">thumb_up</span>
+          <img src="imagenesParaReplicar/indexHtml/1c74541a95b0192296ee04ce8efdb704da34dc30.png" alt=""/>
           <div class="why-us-badge">01</div>
         </div>
         <h4>Atención personalizada</h4>
@@ -332,7 +334,7 @@
       </div>
       <div class="why-us-item" data-aos="fade-up" data-aos-delay="150">
         <div class="why-us-icon">
-          <span class="material-symbols-outlined">podiatry</span>
+          <img src="imagenesParaReplicar/indexHtml/4b6090694d61ee6ff7988c2c617f5d489e0f891b.png" alt=""/>
           <div class="why-us-badge">02</div>
         </div>
         <h4>Especialización en postura</h4>
@@ -340,7 +342,7 @@
       </div>
       <div class="why-us-item" data-aos="fade-up" data-aos-delay="300">
         <div class="why-us-icon">
-          <span class="material-symbols-outlined">biotech</span>
+          <img src="imagenesParaReplicar/indexHtml/8037f0e883f9ba286dc86a3b4145c571fb0b17c6.png" alt=""/>
           <div class="why-us-badge">03</div>
         </div>
         <h4>Análisis con criterio</h4>
@@ -348,7 +350,7 @@
       </div>
       <div class="why-us-item" data-aos="fade-up" data-aos-delay="450">
         <div class="why-us-icon">
-          <span class="material-symbols-outlined">spa</span>
+          <img src="imagenesParaReplicar/indexHtml/b3650f453161f4718e556a130346b260b5bed23f.png" alt=""/>
           <div class="why-us-badge">04</div>
         </div>
         <h4>Método flexible y progresivo</h4>
@@ -360,10 +362,10 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
-  <div class="testimonials-bg"><img src="preview(2).jpg" alt=""/></div>
+  <div class="testimonials-bg"><img src="imagenesParaReplicar/indexHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt=""/></div>
   <div class="testimonials-inner">
     <div class="testimonials-left" data-aos="fade-right" data-aos-duration="1000">
-      <img src="preview (3).webp" alt="Reseñas" style="max-width:280px; margin-bottom:1rem;"/>
+      <img src="imagenesParaReplicar/indexHtml/bf138a9b9ca121f4b093b4926dee6321ffcb7bf7.png" alt="Reseñas" style="max-width:280px; margin-bottom:1rem;"/>
       <div class="testimonial-card">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace mas de un año...</p>
@@ -380,8 +382,8 @@
         <small>Testimoniales</small>
         <h2>Lo que nuestros pacientes opinan</h2>
       </div>
-      <div class="testimonials-right-card">
-        <img src="preview (7).webp" alt="Vanesa Montero"/>
+      <div class="testimonials-right-img">
+        <img src="imagenesParaReplicar/indexHtml/2ce6f5bd46b473ea50153951e20c41de0da3c8b9.png" alt="Vanesa Montero"/>
       </div>
     </div>
   </div>
@@ -437,25 +439,21 @@
 <script>
   AOS.init({ once:true, offset:50, duration:800, easing:'ease-in-out' });
 
-  // Close mobile menu on link click
   document.getElementById('mobileNav').addEventListener('click', function(e) {
     if (e.target.tagName === 'A') this.classList.remove('open');
   });
 
-  // Header scroll effect
   const header = document.querySelector('.header');
   window.addEventListener('scroll', () => {
     header.style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,0.08)' : 'none';
   });
 
-  // Services tabs (visual only)
   document.querySelectorAll('.services-tab').forEach(tab => {
     tab.addEventListener('click', function() {
       document.querySelectorAll('.services-tab').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
     });
   });
-
 </script>
 </body>
 </html>

@@ -10,11 +10,13 @@
 <style>
   :root {
     --purple: #8A55EB;
+    --purple-dark: #6B3FC7;
     --teal: #30C4B2;
     --dark: #341F45;
     --black: #000000;
     --white: #FFFFFF;
     --gray-bg: #F8F8F8;
+    --gray-light: #F5F5F5;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Montserrat',sans-serif; color:var(--black); background:var(--white); overflow-x:hidden; }
@@ -45,67 +47,90 @@
   .hero-banner { position:relative; height:420px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
   .hero-banner-bg { position:absolute; inset:0; z-index:0; }
   .hero-banner-bg img { width:100%; height:100%; object-fit:cover; }
-  .hero-banner-overlay { position:absolute; inset:0; background:rgba(52,31,69,0.6); z-index:1; }
+  .hero-banner-overlay { position:absolute; inset:0; background:rgba(138,85,235,0.55); z-index:1; }
   .hero-banner h1 { position:relative; z-index:2; font-size:clamp(2.5rem,5vw,64px); font-weight:900; color:var(--white); line-height:1; }
 
   /* ── About ── */
   .about { padding:5rem 2rem; }
-  .about-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.3fr; gap:4rem; align-items:start; }
+  .about-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1.3fr; gap:4rem; align-items:start; }
   .about-photo { position:relative; }
-  .about-photo img { width:100%; max-width:463px; height:586px; object-fit:cover; position:relative; z-index:2; }
-  .about-photo-border { position:absolute; top:48px; left:-40px; width:451px; height:578px; border:1px solid var(--purple); z-index:1; }
+  .about-photo img { width:100%; max-width:463px; height:586px; object-fit:cover; border-radius:12px; position:relative; z-index:2; }
+  .about-photo-border { position:absolute; top:48px; left:-40px; width:451px; height:578px; border:2px solid var(--purple); border-radius:12px; z-index:1; }
   .about-content { }
-  .about-tag { color:var(--teal); font-size:20px; font-weight:700; line-height:1.2; margin-bottom:0.5rem; }
-  .about-title { color:var(--teal); font-size:28px; font-weight:700; line-height:1.2; margin-bottom:1.5rem; }
-  .about-text { font-size:16px; line-height:1.5; color:#3F1195; margin-bottom:2rem; }
+  .about-tag { color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .about-title { font-size:28px; font-weight:700; line-height:1.3; margin-bottom:1.5rem; color:var(--dark); }
+  .about-title span { color:var(--teal); }
+  .about-text { font-size:15px; line-height:1.7; color:#555; margin-bottom:2rem; }
   .about-features { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem; }
-  .about-feature h4 { font-size:20px; font-weight:900; line-height:1.1; margin-bottom:0.5rem; }
-  .about-feature p { font-size:14px; line-height:1.5; color:#333; }
+  .about-feature h4 { font-size:18px; font-weight:700; line-height:1.2; margin-bottom:0.5rem; color:var(--dark); }
+  .about-feature p { font-size:14px; line-height:1.6; color:#666; }
   .about-signature { display:flex; align-items:center; gap:1rem; margin-top:2rem; }
-  .about-avatar { width:130px; height:131px; border-radius:50%; background:rgba(217,217,217,0.31); display:flex; align-items:center; justify-content:center; }
-  .about-avatar img { width:106px; height:107px; border-radius:50%; object-fit:cover; }
-  .about-signature-name { font-family:'Sassy Frass',cursive; font-size:45px; line-height:50px; }
+  .about-avatar { width:80px; height:80px; border-radius:50%; overflow:hidden; border:3px solid var(--purple); }
+  .about-avatar img { width:100%; height:100%; object-fit:cover; }
+  .about-signature-name { font-family:'Sassy Frass',cursive; font-size:40px; line-height:1; color:var(--dark); }
 
-  /* ── Gallery Section ── */
-  .gallery-section { padding:4rem 2rem; background:rgba(217,217,217,0.37); }
-  .gallery-inner { max-width:1400px; margin:0 auto; }
-  .gallery-header { text-align:center; margin-bottom:2.5rem; }
-  .gallery-header small { display:block; color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
-  .gallery-header h2 { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; }
-  .gallery-grid { display:grid; grid-template-columns:1.4fr 0.6fr; grid-template-rows:1fr 1fr; gap:12px; height:480px; }
-  .gallery-item { border-radius:16px; overflow:hidden; position:relative; }
-  .gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
-  .gallery-item:hover img { transform:scale(1.05); }
-  .gallery-main { grid-row:1/3; }
-  .gallery-label { position:absolute; bottom:0; left:0; right:0; padding:1rem; background:linear-gradient(to top,rgba(0,0,0,0.6),transparent); color:var(--white); font-size:13px; font-weight:600; opacity:0; transition:opacity 0.3s; }
-  .gallery-item:hover .gallery-label { opacity:1; }
+  /* ── Why Choose Us ── */
+  .why-us { padding:5rem 2rem; background:var(--gray-light); }
+  .why-us-inner { max-width:1200px; margin:0 auto; text-align:center; }
+  .why-us-tag { color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .why-us-title { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; color:var(--dark); margin-bottom:3rem; }
+  .why-us-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; }
+  .why-us-card { text-align:center; padding:1.5rem 1rem; }
+  .why-us-icon { width:80px; height:80px; border-radius:50%; margin:0 auto 1.2rem; display:flex; align-items:center; justify-content:center; }
+  .why-us-icon.teal { background:var(--teal); }
+  .why-us-icon.purple { background:var(--purple); }
+  .why-us-icon img { width:40px; height:40px; filter:brightness(0) invert(1); }
+  .why-us-icon .material-symbols-outlined { font-size:36px; color:var(--white); }
+  .why-us-card h4 { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:0.5rem; line-height:1.3; }
+  .why-us-card p { font-size:13px; line-height:1.6; color:#666; }
+
+  /* ── Experts / Team ── */
+  .experts { padding:5rem 2rem; }
+  .experts-inner { max-width:1200px; margin:0 auto; text-align:center; }
+  .experts-tag { color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
+  .experts-title { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; color:var(--dark); margin-bottom:3rem; }
+  .experts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .expert-card { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); transition:transform 0.3s; }
+  .expert-card:hover { transform:translateY(-6px); }
+  .expert-card-img { height:320px; overflow:hidden; }
+  .expert-card-img img { width:100%; height:100%; object-fit:cover; }
+  .expert-card-info { padding:1.5rem; }
+  .expert-card-info h4 { font-size:18px; font-weight:700; color:var(--dark); margin-bottom:0.3rem; }
+  .expert-card-info p { font-size:14px; color:var(--purple); font-weight:500; }
 
   /* ── Testimonials ── */
-  .testimonials { position:relative; padding:5rem 2rem; min-height:650px; }
-  .testimonials-bg { position:absolute; inset:0; z-index:0; }
-  .testimonials-bg img { width:100%; height:100%; object-fit:cover; }
-  .testimonials-inner { position:relative; z-index:2; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
+  .testimonials { position:relative; padding:5rem 2rem; background:var(--gray-bg); overflow:hidden; }
+  .testimonials-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:3rem; align-items:center; }
   .testimonials-left { display:flex; flex-direction:column; gap:1.5rem; }
-  .testimonial-card { background:var(--white); padding:1.5rem; font-size:16px; line-height:1.75; max-width:480px; }
-  .testimonials-right { position:relative; }
-  .testimonials-right-header { background:var(--gray-bg); padding:2rem; margin-bottom:0; }
+  .testimonial-card { background:var(--white); border-radius:16px; padding:2rem; box-shadow:0 2px 16px rgba(0,0,0,0.06); position:relative; }
+  .testimonial-card::before { content:'\201C'; position:absolute; top:12px; left:20px; font-size:48px; color:var(--teal); font-family:Georgia,serif; line-height:1; }
+  .testimonial-card p { font-size:14px; line-height:1.7; color:#555; padding-top:1rem; }
+  .testimonial-card-footer { display:flex; align-items:center; gap:0.75rem; margin-top:1rem; }
+  .testimonial-card-avatar { width:40px; height:40px; border-radius:50%; background:var(--gray-light); overflow:hidden; }
+  .testimonial-card-avatar img { width:100%; height:100%; object-fit:cover; }
+  .testimonial-card-name { font-size:14px; font-weight:700; color:var(--dark); }
+  .testimonial-card-role { font-size:12px; color:#999; }
+  .testimonial-stars { color:#F5A623; font-size:14px; margin-top:0.5rem; }
+  .testimonials-right { text-align:center; }
+  .testimonials-right-header { margin-bottom:1.5rem; }
   .testimonials-right-header small { display:block; color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
-  .testimonials-right-header h2 { font-size:24px; font-weight:700; color:var(--teal); text-align:center; line-height:1.2; }
-  .testimonials-right-img { text-align:center; }
-  .testimonials-right-img img { max-height:500px; object-fit:contain; }
+  .testimonials-right-header h2 { font-size:28px; font-weight:700; color:var(--dark); line-height:1.3; margin-top:0.5rem; }
+  .testimonials-right-img { position:relative; display:inline-block; }
+  .testimonials-right-img img { max-height:420px; object-fit:contain; border-radius:16px; }
+  .testimonials-right-img .circle-deco { position:absolute; bottom:-10px; right:-10px; width:80px; height:80px; border:3px solid var(--teal); border-radius:50%; z-index:-1; }
 
   /* ── Footer ── */
-  .footer { position:relative; padding:4rem 2rem 2rem; color:var(--white); }
-  .footer-bg { position:absolute; inset:0; z-index:0; background:rgba(52,31,69,0.9); }
-  .footer-bg img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; z-index:-1; }
-  .footer-inner { position:relative; z-index:2; max-width:1400px; margin:0 auto; }
-  .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:2rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.3); }
-  .footer-grid h4 { font-size:20px; font-weight:900; margin-bottom:1rem; }
-  .footer-grid p, .footer-grid li { font-size:15px; line-height:2; font-weight:400; }
+  .footer { position:relative; padding:4rem 2rem 2rem; color:var(--white); background:var(--dark); }
+  .footer-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; }
+  .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1.2fr; gap:2rem; padding-bottom:2rem; border-bottom:1px solid rgba(255,255,255,0.2); }
+  .footer-grid h4 { font-size:18px; font-weight:700; margin-bottom:1rem; color:var(--teal); }
+  .footer-grid p, .footer-grid li { font-size:14px; line-height:2; font-weight:400; color:rgba(255,255,255,0.8); }
   .footer-grid ul { list-style:none; }
-  .footer-bottom { padding-top:1.5rem; display:flex; justify-content:center; gap:8px; }
-  .footer-social { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:4px; }
-  .footer-social .material-symbols-outlined { color:rgba(255,255,255,0.5); font-size:24px; }
+  .footer-grid a:hover { color:var(--teal); }
+  .footer-bottom { padding-top:1.5rem; display:flex; justify-content:center; gap:12px; }
+  .footer-social { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:rgba(255,255,255,0.1); transition:background 0.3s; }
+  .footer-social:hover { background:var(--purple); }
+  .footer-social .material-symbols-outlined { color:rgba(255,255,255,0.7); font-size:20px; }
 
   /* ── Mobile ── */
   .mobile-nav { display:none; flex-direction:column; padding:1rem 2rem; border-top:1px solid rgba(0,0,0,0.1); background:var(--white); }
@@ -116,9 +141,8 @@
     .about-inner { grid-template-columns:1fr; }
     .about-photo-border { display:none; }
     .about-features { grid-template-columns:1fr; }
-    .gallery-grid { grid-template-columns:1fr; grid-template-rows:auto; height:auto; }
-    .gallery-main { grid-row:auto; }
-    .gallery-item img { height:250px; }
+    .why-us-grid { grid-template-columns:repeat(2,1fr); }
+    .experts-grid { grid-template-columns:1fr 1fr; }
     .testimonials-inner { grid-template-columns:1fr; }
     .footer-grid { grid-template-columns:1fr 1fr; }
   }
@@ -126,9 +150,13 @@
     .top-bar { display:none; }
     .nav-links { display:none !important; }
     .menu-toggle { display:block; }
+    .hero-banner { height:320px; }
     .hero-banner h1 { font-size:2.5rem; }
     .footer-grid { grid-template-columns:1fr; }
     .about-photo img { height:400px; }
+    .why-us-grid { grid-template-columns:1fr; }
+    .experts-grid { grid-template-columns:1fr; }
+    .expert-card-img { height:260px; }
   }
 </style>
 </head>
@@ -193,17 +221,17 @@
       <div class="about-photo-border"></div>
     </div>
     <div class="about-content" data-aos="fade-left" data-aos-duration="1000">
-      <div class="about-tag">SOBRE NOSOTROS</div>
-      <div class="about-title">Podología y postura para recuperar tu equilibrio</div>
+      <div class="about-tag">Sobre nosotros</div>
+      <h2 class="about-title"><span>Podología y postura</span> para recuperar tu equilibrio</h2>
       <p class="about-text">Trabajamos desde una mirada global del cuerpo, entendiendo que el dolor no aparece por casualidad, sino como resultado de adaptaciones y compensaciones mantenidas en el tiempo. Nuestro objetivo es ordenar la información, devolver claridad y acompañarte en un proceso que tenga sentido para ti.</p>
       <div class="about-features">
         <div class="about-feature">
           <h4>Experiencia con método</h4>
-          <p>Más de 20 años trabajando desde la base: el pie como origen y final del movimiento. Cada valoración sigue un orden claro para entender cómo se organiza tu cuerpo.</p>
+          <p>Más de 20 años trabajando desde la base: el pie como origen y final del movimiento.</p>
         </div>
         <div class="about-feature">
-          <h4>Experiencia con método</h4>
-          <p>Más de 20 años trabajando desde la base: el pie como origen y final del movimiento. Cada valoración sigue un orden claro para entender cómo se organiza tu cuerpo.</p>
+          <h4>Diagnóstico con criterio</h4>
+          <p>Cada valoración sigue un orden claro para entender cómo se organiza tu cuerpo.</p>
         </div>
       </div>
       <div class="about-signature">
@@ -216,25 +244,76 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery-section">
-  <div class="gallery-inner">
-    <div class="gallery-header" data-aos="fade-up">
-      <small>Nuestras instalaciones</small>
-      <h2>Un espacio diseñado para tu salud</h2>
+<!-- WHY CHOOSE US -->
+<section class="why-us">
+  <div class="why-us-inner">
+    <div class="why-us-tag" data-aos="fade-up">Nuestras instalaciones</div>
+    <h2 class="why-us-title" data-aos="fade-up" data-aos-delay="100">¿Por Qué Elegirnos?</h2>
+    <div class="why-us-grid">
+      <div class="why-us-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="why-us-icon teal">
+          <img src="imagenesParaReplicar/elCentroHtml/4b6090694d61ee6ff7988c2c617f5d489e0f891b.png" alt=""/>
+        </div>
+        <h4>Atención personalizada</h4>
+        <p>Cada paciente es único. Adaptamos cada tratamiento a tus necesidades específicas.</p>
+      </div>
+      <div class="why-us-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="why-us-icon purple">
+          <img src="imagenesParaReplicar/elCentroHtml/8037f0e883f9ba286dc86a3b4145c571fb0b17c6.png" alt=""/>
+        </div>
+        <h4>Especialización avanzada</h4>
+        <p>Formación continua en podología, posturología y biomecánica del pie.</p>
+      </div>
+      <div class="why-us-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="why-us-icon teal">
+          <img src="imagenesParaReplicar/elCentroHtml/1c74541a95b0192296ee04ce8efdb704da34dc30.png" alt=""/>
+        </div>
+        <h4>Tecnología de última generación</h4>
+        <p>Equipamiento moderno para diagnósticos precisos y tratamientos eficaces.</p>
+      </div>
+      <div class="why-us-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="why-us-icon purple">
+          <img src="imagenesParaReplicar/elCentroHtml/b3650f453161f4718e556a130346b260b5bed23f.png" alt=""/>
+        </div>
+        <h4>Enfoque flexible y progresivo</h4>
+        <p>Tratamientos que evolucionan contigo, adaptándose a tu ritmo y progreso.</p>
+      </div>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item gallery-main" data-aos="fade-right">
-        <img src="imagenesParaReplicar/elCentroHtml/b0e8bce5a465cbb3f84ed86be11917b25e9f4001.jpg" alt="Sala principal"/>
-        <div class="gallery-label">Sala de consulta principal</div>
+  </div>
+</section>
+
+<!-- EXPERTS / TEAM -->
+<section class="experts">
+  <div class="experts-inner">
+    <div class="experts-tag" data-aos="fade-up">Nuestro equipo</div>
+    <h2 class="experts-title" data-aos="fade-up" data-aos-delay="100">Conoce a nuestros expertos</h2>
+    <div class="experts-grid">
+      <div class="expert-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="expert-card-img">
+          <img src="imagenesParaReplicar/elCentroHtml/005435a0c0dcb7cbbe23eaa6ecbdce0762480beb.jpg" alt="Dr. Profesional"/>
+        </div>
+        <div class="expert-card-info">
+          <h4>Dr. Carlos Ruiz</h4>
+          <p>Podólogo especialista</p>
+        </div>
       </div>
-      <div class="gallery-item" data-aos="fade-left" data-aos-delay="100">
-        <img src="imagenesParaReplicar/elCentroHtml/005435a0c0dcb7cbbe23eaa6ecbdce0762480beb.jpg" alt="Consulta"/>
-        <div class="gallery-label">Consulta profesional</div>
+      <div class="expert-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="expert-card-img">
+          <img src="imagenesParaReplicar/elCentroHtml/a27e8587ad5986781839fa4ee33619b27ee2cbc6.jpg" alt="Dra. Vanesa Montero"/>
+        </div>
+        <div class="expert-card-info">
+          <h4>Vanesa Montero</h4>
+          <p>Directora / Podóloga</p>
+        </div>
       </div>
-      <div class="gallery-item" data-aos="fade-left" data-aos-delay="200">
-        <img src="imagenesParaReplicar/elCentroHtml/a27e8587ad5986781839fa4ee33619b27ee2cbc6.jpg" alt="Bienestar"/>
-        <div class="gallery-label">Espacio de bienestar</div>
+      <div class="expert-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="expert-card-img">
+          <img src="imagenesParaReplicar/elCentroHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt="Profesional"/>
+        </div>
+        <div class="expert-card-info">
+          <h4>Dra. Laura García</h4>
+          <p>Posturóloga</p>
+        </div>
       </div>
     </div>
   </div>
@@ -242,23 +321,43 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
-  <div class="testimonials-bg"><img src="imagenesParaReplicar/elCentroHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt=""/></div>
   <div class="testimonials-inner">
     <div class="testimonials-left" data-aos="fade-right" data-aos-duration="1000">
       <div class="testimonial-card">
-        <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace mas de un año...</p>
+        <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace más de un año y desde entonces mi calidad de vida ha mejorado muchísimo. Totalmente recomendable.</p>
+        <div class="testimonial-card-footer">
+          <div class="testimonial-card-avatar">
+            <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
+          </div>
+          <div>
+            <div class="testimonial-card-name">María López</div>
+            <div class="testimonial-card-role">Paciente</div>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
       </div>
       <div class="testimonial-card">
-        <p>Excelentes profesionales, empezando por la recepcionista seguido del equipo de podólogas.</p>
+        <p>Excelentes profesionales, empezando por la recepcionista seguido del equipo de podólogas. El trato es cercano y profesional. Sin duda el mejor centro de podología de la zona.</p>
+        <div class="testimonial-card-footer">
+          <div class="testimonial-card-avatar">
+            <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
+          </div>
+          <div>
+            <div class="testimonial-card-name">Judith White</div>
+            <div class="testimonial-card-role">Managing Director</div>
+          </div>
+        </div>
+        <div class="testimonial-stars">★★★★★</div>
       </div>
     </div>
     <div class="testimonials-right" data-aos="fade-left" data-aos-duration="1000">
       <div class="testimonials-right-header">
-        <small>TESTIMONIALES</small>
-        <h2>Lo que nuestros pacientes opinan</h2>
+        <small>Testimoniales</small>
+        <h2>Lo que nuestros<br/>pacientes opinan</h2>
       </div>
       <div class="testimonials-right-img">
-        <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt="Vanesa Montero"/>
+        <img src="imagenesParaReplicar/elCentroHtml/64f109fea7798f4a251766442b40ce8b27eac780.png" alt="Profesional del centro"/>
+        <div class="circle-deco"></div>
       </div>
     </div>
   </div>
@@ -266,7 +365,6 @@
 
 <!-- FOOTER -->
 <footer class="footer" id="contact">
-  <div class="footer-bg"></div>
   <div class="footer-inner">
     <div class="footer-grid" data-aos="fade-up">
       <div>

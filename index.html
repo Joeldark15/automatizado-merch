@@ -125,6 +125,7 @@
   .testimonials { position:relative; padding:5rem 2rem; min-height:600px; }
   .testimonials-bg { position:absolute; inset:0; z-index:0; }
   .testimonials-bg img { width:100%; height:100%; object-fit:cover; }
+  .testimonials-bg::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.55); }
   .testimonials-inner { position:relative; z-index:2; max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
   .testimonials-left { display:flex; flex-direction:column; gap:1.5rem; }
   .testimonial-card { background:var(--white); padding:1.5rem; font-size:16px; line-height:1.8; max-width:450px; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
@@ -133,9 +134,9 @@
   .testimonials-right { position:relative; }
   .testimonials-right-header { text-align:center; margin-bottom:2rem; }
   .testimonials-right-header small { display:block; color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
-  .testimonials-right-header h2 { font-size:28px; font-weight:700; color:var(--teal); }
-  .testimonials-right-card { background:var(--white); padding:2rem; }
-  .testimonials-right-card img { width:100%; max-height:400px; object-fit:cover; }
+  .testimonials-right-header h2 { font-size:28px; font-weight:700; color:var(--white); }
+  .testimonials-right-card { padding:1rem; }
+  .testimonials-right-card img { width:100%; max-height:400px; object-fit:cover; border-radius:8px; }
 
   /* ── Footer ── */
   .footer { position:relative; padding:4rem 2rem 2rem; color:var(--white); }
@@ -225,7 +226,7 @@
       <a href="#contact" class="hero-btn" data-aos="fade-up" data-aos-delay="300">Solicitar una cita</a>
     </div>
     <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
-      <img src="preview (1).webp" alt="Vanesa Montero" data-remove-bg/>
+      <img src="preview (1).webp" alt="Vanesa Montero"/>
       <div class="hero-pill"></div>
       <div class="hero-social">
         <a href="#"><span class="material-symbols-outlined">chevron_left</span></a>
@@ -359,10 +360,10 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
-  <div class="testimonials-bg"><img src="preview (2).webp" alt="" style="opacity:0.1;"/></div>
+  <div class="testimonials-bg"><img src="preview (2).webp" alt=""/></div>
   <div class="testimonials-inner">
     <div class="testimonials-left" data-aos="fade-right" data-aos-duration="1000">
-      <img src="preview (3).webp" alt="Reseñas" style="max-width:200px; margin-bottom:1rem; filter:invert(1) hue-rotate(180deg);"/>
+      <img src="preview (3).webp" alt="Reseñas" style="max-width:280px; margin-bottom:1rem;"/>
       <div class="testimonial-card">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace mas de un año...</p>
@@ -380,7 +381,7 @@
         <h2>Lo que nuestros pacientes opinan</h2>
       </div>
       <div class="testimonials-right-card">
-        <img src="preview (7).webp" alt="Vanesa Montero" data-remove-bg/>
+        <img src="preview (7).webp" alt="Vanesa Montero"/>
       </div>
     </div>
   </div>
@@ -455,28 +456,6 @@
     });
   });
 
-  // Replace black background with white on photo images
-  function removeBlackBg(img, threshold) {
-    threshold = threshold || 45;
-    var c = document.createElement('canvas');
-    c.width = img.naturalWidth;
-    c.height = img.naturalHeight;
-    var ctx = c.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    var data = ctx.getImageData(0, 0, c.width, c.height);
-    var px = data.data;
-    for (var i = 0; i < px.length; i += 4) {
-      if (px[i] < threshold && px[i+1] < threshold && px[i+2] < threshold) {
-        px[i] = 255; px[i+1] = 255; px[i+2] = 255;
-      }
-    }
-    ctx.putImageData(data, 0, 0);
-    img.src = c.toDataURL('image/webp', 0.92);
-  }
-  document.querySelectorAll('[data-remove-bg]').forEach(function(img) {
-    if (img.complete) removeBlackBg(img);
-    else img.onload = function() { removeBlackBg(img); };
-  });
 </script>
 </body>
 </html>

@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -37,6 +38,9 @@
 <style>
         body { font-family: 'Poppins', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        header { transition: box-shadow 0.3s, padding 0.3s; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
@@ -84,14 +88,14 @@
 <div class="absolute inset-0 bg-cover bg-center" data-alt="Interior of a modern podiatry clinic treatment room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlPVXKfxZZAWYayc7mlPWxWSM5RYXk-VSPpdZCtrhao_yOY_eT4T1feB5p199gdpjo9uG152JCALsmEYowq-zmxUBO63SNiQ2--EAXspt7jZhmOaaTsLyV5zw7m4LW6Cd_07Kou40RIKLEky94PMzgzjU2PI0yqcLJI8MGNpBx1VpQOvEGj13DuqL4UmV_FCzPQ6YwmZm5EgNSPzAJqrpy1GYeza0Yf5ZpPWnh2MYGqFYbEmVuHXgzTLnfW_j_8icsBAuILOd58F8');"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40"></div>
 <div class="container mx-auto px-4 md:px-20 relative z-10 text-white max-w-4xl">
-<h1 class="font-serif text-5xl md:text-7xl leading-tight mb-6">
+<h1 class="font-serif text-5xl md:text-7xl leading-tight mb-6" data-aos="fade-up" data-aos-duration="1000">
                 Tu <span class="text-teal-accent italic font-serif">equilibrio</span> comienza en los pies
             </h1>
-<p class="text-lg md:text-xl mb-10 opacity-90 max-w-2xl font-light">
+<p class="text-lg md:text-xl mb-10 opacity-90 max-w-2xl font-light" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 Descubre cómo la podología postural puede transformar tu bienestar integral. Especialistas en el cuidado avanzado del pie en Elda.
             </p>
 <div class="flex gap-4">
-<a href="tratamientos.html" class="bg-white text-primary hover:bg-teal-accent hover:text-white px-8 py-4 rounded-lg font-bold transition-all flex items-center gap-2 no-underline">
+<a href="tratamientos.html" class="bg-white text-primary hover:bg-teal-accent hover:text-white px-8 py-4 rounded-lg font-bold transition-all flex items-center gap-2 no-underline" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
                     Nuestros Servicios <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
@@ -101,15 +105,15 @@
 <section class="py-24 px-4 md:px-20 bg-white dark:bg-background-dark">
 <div class="container mx-auto grid md:grid-cols-2 gap-16 items-center">
 <div class="relative">
-<div class="rounded-2xl overflow-hidden aspect-[4/5] relative z-10 shadow-2xl">
+<div class="rounded-2xl overflow-hidden aspect-[4/5] relative z-10 shadow-2xl" data-aos="fade-right" data-aos-duration="1000">
 <img class="w-full h-full object-cover" data-alt="Vanessa Montero examining a patient's foot posture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO8QAJmxmVxS-9hN7MmWrPN5vjmJ2oyIfp1_fcs5wUDFmaWhN3JlyuMENvzbfIJMKOt-aJOJwxTIAmMIyt9ODnOjdgcQOikiROf8YBrv7mE9aqdJVfmNLWBHcZDPYbfZaIC3uJVW8fOqZQoFl_QTE7DtGJsSP7shZ9RBomFOgN39jzsIO12KxoGsecA-8GWgCxs8mtdamn6GReA5xo8mLz0tpVb9Y3C6syBAgvl9AlCvyQU1jjopg37DrOhN8pzloiijeJs7j5R1M"/>
 </div>
 <div class="absolute -bottom-6 -right-6 w-full h-full border-8 border-teal-accent/20 rounded-2xl -z-0"></div>
 <div class="absolute top-10 -left-4 w-2 h-32 bg-gradient-to-b from-primary to-teal-accent rounded-full"></div>
 </div>
 <div>
-<span class="text-teal-accent font-bold tracking-widest text-sm uppercase mb-4 block">Sobre nosotros</span>
-<h2 class="font-serif text-4xl md:text-5xl text-slate-900 dark:text-white mb-8 leading-tight">Podología y postura para recuperar tu equilibrio</h2>
+<span class="text-teal-accent font-bold tracking-widest text-sm uppercase mb-4 block" data-aos="fade-left" data-aos-duration="1000">
+<h2 class="font-serif text-4xl md:text-5xl text-slate-900 dark:text-white mb-8 leading-tight" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">Podología y postura para recuperar tu equilibrio</h2>
 <div class="grid grid-cols-2 gap-8 mb-10">
 <div class="flex flex-col gap-2">
 <span class="material-symbols-outlined text-primary text-3xl">verified</span>
@@ -148,12 +152,12 @@
 <section class="py-24 px-4 md:px-20 bg-background-light dark:bg-slate-900/50">
 <div class="container mx-auto">
 <div class="text-center mb-16">
-<h2 class="font-serif text-4xl md:text-5xl text-slate-900 dark:text-white mb-4">Nuestros Servicios</h2>
+<h2 class="font-serif text-4xl md:text-5xl text-slate-900 dark:text-white mb-4" data-aos="fade-up" data-aos-duration="800">Nuestros Servicios</h2>
 <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
 </div>
 <div class="grid md:grid-cols-3 gap-8">
 <!-- Card 1 -->
-<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group">
+<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group" data-aos="fade-up" data-aos-delay="0" data-aos-duration="800">
 <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
 <span class="material-symbols-outlined text-3xl">analytics</span>
 </div>
@@ -164,7 +168,7 @@
 <a class="text-primary text-sm font-bold flex items-center gap-2" href="tratamientos.html">Ver detalles <span class="material-symbols-outlined text-sm">add</span></a>
 </div>
 <!-- Card 2 -->
-<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group">
+<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">
 <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
 <span class="material-symbols-outlined text-3xl">medical_services</span>
 </div>
@@ -175,7 +179,7 @@
 <a class="text-primary text-sm font-bold flex items-center gap-2" href="tratamientos.html">Ver detalles <span class="material-symbols-outlined text-sm">add</span></a>
 </div>
 <!-- Card 3 -->
-<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group">
+<div class="bg-white dark:bg-background-dark p-10 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-transparent hover:border-primary/10 group" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
 <div class="size-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
 <span class="material-symbols-outlined text-3xl">orthopedics</span>
 </div>
@@ -193,7 +197,7 @@
 <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
 <div class="relative">
 <span class="material-symbols-outlined text-primary/10 text-[180px] absolute -top-24 -left-12 select-none">format_quote</span>
-<div class="relative z-10">
+<div class="relative z-10" data-aos="fade-right" data-aos-duration="1000">
 <p class="font-serif italic text-3xl md:text-4xl text-slate-700 dark:text-slate-200 leading-relaxed mb-10">
                         "Nunca imaginé que el origen de mi dolor de espalda estuviera en mi forma de caminar. Gracias a Vanessa, he recuperado mi calidad de vida."
                     </p>
@@ -210,7 +214,7 @@
 </div>
 </div>
 </div>
-<div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl group" data-aos="fade-left" data-aos-duration="1000">
 <img class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Satisfied smiling female patient after clinic visit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4wN6-un7b1VKdSy7GmttDG5hOJZ82NFPNphzhCCxSeCcK1U4WmY4rWNN1QBL3JeP4Un4TDkuNstX2D67rlcVEBnyO0KJAQGlBFeoGk93achmpVdEOJlBXsKWHLS2lIsDZqublzS9jJ80zms7p9hYj-vP5mROgQk7YFHxygZXgCcaBLjVo2jkYinvUQx98uQ92053ZGf16F8U7rGjutOBAmwA60x0Scn_kCsmQ4rr72cCHeKwVymZCnxVMgeF2dEue5eyhFE5UUUE"/>
 <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex items-end p-8">
 <p class="text-white font-medium">Más de 500 pacientes han recuperado su equilibrio con nosotros.</p>
@@ -225,7 +229,7 @@
 <div class="absolute bottom-0 left-0 w-32 h-32 bg-teal-accent/20 rounded-full translate-y-1/2 -translate-x-1/2"></div>
 <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
 <div class="text-center md:text-left">
-<h2 class="font-serif text-4xl md:text-5xl text-white mb-4">¿Preparado para sentirte bien?</h2>
+<h2 class="font-serif text-4xl md:text-5xl text-white mb-4" data-aos="zoom-in" data-aos-duration="800">¿Preparado para sentirte bien?</h2>
 <p class="text-white/80 text-lg max-w-xl">Reserva tu primera consulta y comienza hoy mismo tu camino hacia un mejor equilibrio postural.</p>
 </div>
 <a href="#contact" class="bg-white text-primary hover:bg-teal-accent hover:text-white px-10 py-5 rounded-xl font-black text-lg transition-all shadow-xl whitespace-nowrap no-underline">
@@ -237,7 +241,7 @@
 <!-- Footer -->
 <footer id="contact" class="bg-deep-purple text-white pt-20 pb-10 px-4 md:px-20">
 <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6" data-aos="fade-up" data-aos-delay="0">
 <div class="flex items-center gap-3">
 <div class="size-10 bg-white rounded-full flex items-center justify-center text-primary font-bold text-lg">Pb</div>
 <div class="flex flex-col">
@@ -294,4 +298,27 @@
 </div>
 </div>
 </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    offset: 50,
+    duration: 800,
+    easing: 'ease-in-out',
+  });
+
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1)';
+      header.style.paddingTop = '0.5rem';
+      header.style.paddingBottom = '0.5rem';
+    } else {
+      header.style.boxShadow = 'none';
+      header.style.paddingTop = '1rem';
+      header.style.paddingBottom = '1rem';
+    }
+  });
+</script>
 </body></html>

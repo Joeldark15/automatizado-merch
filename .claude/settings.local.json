@@ -17,7 +17,10 @@
       "Bash(du:*)",
       "Bash(rm:*)",
       "Bash(lsof:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:contribution.usercontent.google.com)",
+      "Bash(ls:*)"
     ]
   },
   "enableAllProjectMcpServers": true

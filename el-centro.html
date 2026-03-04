@@ -4,239 +4,991 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>El Centro | Podo in Balance</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          primary: '#7C3AED',
-          'primary-dark': '#5B21B6',
-          teal: '#2DD4BF',
-        },
-        fontFamily: { sans: ['Poppins', 'sans-serif'] },
-      },
-    },
-  }
-</script>
 <style>
-  body { font-family: 'Poppins', sans-serif; }
-  #mobile-menu { display: none; }
-  #mobile-menu.open { display: flex; }
+  :root {
+    --purple: #7C3AED;
+    --purple-dark: #5B21B6;
+    --purple-light: #A78BFA;
+    --purple-bg: #EDE9FE;
+    --teal: #2DD4BF;
+    --teal-dark: #0D9488;
+    --white: #FFFFFF;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--gray-800);
+    background: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+  /* ── Subtle grain overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .anim-fade-up { animation: fadeUp 0.8s ease-out both; }
+  .anim-scale   { animation: scaleIn 0.8s ease-out both; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.2s; }
+  .d3 { animation-delay: 0.35s; }
+  .d4 { animation-delay: 0.5s; }
+
+  /* ── Top bar ── */
+  .top-bar {
+    background: var(--purple);
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    padding: 6px 0;
+    letter-spacing: 0.02em;
+  }
+  .top-bar a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+  .top-bar a:hover { color: #fff; }
+  .top-bar .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .top-bar .left, .top-bar .right { display: flex; gap: 1.5rem; align-items: center; }
+  .top-bar .material-symbols-outlined { font-size: 12px; vertical-align: -1px; margin-right: 4px; }
+
+  @media (max-width: 768px) {
+    .top-bar { display: none; }
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    backdrop-filter: blur(12px);
+  }
+  header .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal);
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    transition: transform 0.3s ease;
+  }
+  .logo:hover .logo-mark { transform: rotate(-8deg) scale(1.05); }
+  .logo-text { line-height: 1.1; }
+  .logo-text span:first-child { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--purple); display: block; }
+  .logo-text span:last-child { font-size: 9px; color: var(--gray-500); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  nav { display: flex; align-items: center; gap: 2rem; }
+  nav a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--purple);
+    transition: width 0.3s ease;
+  }
+  nav a:hover { color: var(--purple); }
+  nav a:hover::after { width: 100%; }
+  nav a.active { color: var(--purple); font-weight: 600; }
+  nav a.active::after { width: 100%; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple);
+    color: var(--gray-50);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .cta-btn:hover { background: var(--purple-dark); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(124,58,237,0.25); }
+  .cta-btn .material-symbols-outlined { font-size: 14px; transition: transform 0.2s; }
+  .cta-btn:hover .material-symbols-outlined { transform: translateX(3px); }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--purple);
+  }
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    background: var(--white);
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    padding: 0.75rem 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-600);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .mobile-nav a.active { color: var(--purple); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    nav, .header-cta { display: none !important; }
+    .menu-toggle { display: block; }
+  }
+
+  /* ── Section helpers ── */
+  .section-tag {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--teal-dark);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--gray-900);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Hero Banner ── */
+  .hero-banner {
+    position: relative;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-banner .bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+  }
+  .hero-banner .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(91,33,182,0.8) 0%, rgba(124,58,237,0.7) 100%);
+  }
+  .hero-banner .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .hero-banner .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-banner .breadcrumb a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .hero-banner .breadcrumb a:hover { color: var(--white); }
+  .hero-banner .breadcrumb .sep { font-size: 10px; }
+  .hero-banner h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .hero-banner h1 em { font-style: italic; color: var(--teal); }
+  .hero-banner p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── About section ── */
+  .about {
+    padding: 5rem 2rem;
+    background: var(--white);
+  }
+  .about .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-img {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+  .about-img img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .about-img .accent-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple), var(--teal));
+  }
+
+  .about-content .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .about-feature {
+    padding: 1.25rem;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+  }
+  .about-feature:hover {
+    border-color: var(--purple-light);
+    box-shadow: 0 8px 24px rgba(124,58,237,0.08);
+    transform: translateY(-2px);
+  }
+  .about-feature .icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .about-feature .icon .material-symbols-outlined { font-size: 18px; color: var(--purple); }
+  .about-feature h4 { font-size: 14px; color: var(--gray-900); margin-bottom: 6px; }
+  .about-feature p { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+
+  .about-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+  }
+  .about-author .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple);
+  }
+  .about-author .name { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: var(--gray-700); }
+  .about-author .role { font-size: 11px; color: var(--gray-500); }
+
+  @media (max-width: 768px) {
+    .about .inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-img img { height: 280px; }
+    .about-content .features-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Gallery ── */
+  .gallery {
+    padding: 5rem 2rem;
+    background: var(--gray-50);
+  }
+  .gallery .inner { max-width: 1200px; margin: 0 auto; }
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    height: 480px;
+  }
+  .gallery-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-item .label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+  }
+  .gallery-item:hover .label { opacity: 1; transform: translateY(0); }
+  .gallery-item .label span {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+  .gallery-main { grid-row: 1 / 3; }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      height: auto;
+    }
+    .gallery-main { grid-row: auto; }
+    .gallery-item img { height: 220px; }
+  }
+
+  /* ── Values ── */
+  .values {
+    padding: 5rem 2rem;
+    background: var(--white);
+  }
+  .values .inner { max-width: 1200px; margin: 0 auto; }
+  .values-header { text-align: center; margin-bottom: 3rem; }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .value-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--gray-200);
+    transition: all 0.4s ease;
+    cursor: default;
+  }
+  .value-card:hover {
+    border-color: var(--purple-light);
+    box-shadow: 0 16px 48px rgba(124,58,237,0.1);
+    transform: translateY(-6px);
+  }
+  .value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+    box-shadow: 0 8px 24px rgba(124,58,237,0.25);
+    transition: transform 0.3s ease;
+  }
+  .value-card:hover .value-icon { transform: scale(1.1); }
+  .value-icon .material-symbols-outlined { font-size: 24px; color: var(--white); }
+  .value-card h4 { font-size: 16px; color: var(--gray-900); margin-bottom: 8px; }
+  .value-card p { font-size: 12px; color: var(--gray-500); line-height: 1.7; }
+
+  @media (max-width: 768px) {
+    .values-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Testimonials ── */
+  .testimonials {
+    padding: 5rem 2rem;
+    background: var(--gray-50);
+  }
+  .testimonials .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    line-height: 0.7;
+    color: var(--purple-bg);
+    user-select: none;
+  }
+  .testimonial-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--gray-800);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-author .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--purple);
+  }
+  .testimonial-author .name { font-size: 14px; font-weight: 600; color: var(--gray-900); }
+  .testimonial-author .role { font-size: 11px; color: var(--gray-500); }
+  .stars { color: #F59E0B; font-size: 13px; letter-spacing: 2px; }
+
+  .testimonial-img {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  }
+  .testimonial-img img { width: 100%; height: 380px; object-fit: cover; object-position: top; }
+  .testimonial-img .overlay-text {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(91,33,182,0.85) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+  }
+  .testimonial-img .overlay-text .tag {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .testimonial-img .overlay-text h3 {
+    font-size: 22px;
+    color: var(--gray-50);
+    line-height: 1.3;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials .inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ── CTA Banner ── */
+  .cta-banner {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cta-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(45,212,191,0.08);
+  }
+  .cta-banner .inner {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .cta-banner p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .cta-btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .cta-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+  .cta-btn-white .material-symbols-outlined { font-size: 16px; transition: transform 0.2s; }
+  .cta-btn-white:hover .material-symbols-outlined { transform: translateX(3px); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--purple-dark);
+    color: rgba(255,255,255,0.5);
+    padding: 4rem 2rem 2rem;
+  }
+  footer .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.8fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-brand .logo-mark {
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 1rem;
+  }
+  .footer-brand p { font-size: 12px; line-height: 1.7; }
+
+  footer h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.2rem;
+  }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  footer ul li, footer ul li a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer ul li a:hover { color: rgba(255,255,255,0.85); }
+  footer .material-symbols-outlined { font-size: 12px; vertical-align: -1px; margin-right: 6px; }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.25); }
+  .social-links { display: flex; gap: 8px; }
+  .social-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .social-link:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+  .social-link svg { width: 13px; height: 13px; fill: rgba(255,255,255,0.45); }
+
+  @media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
-<body class="text-gray-800 bg-white overflow-x-hidden">
+<body>
 
-<!-- TOP INFO BAR -->
-<div class="bg-[#7C3AED] text-white text-xs py-1.5 hidden md:block">
-  <div class="max-w-7xl mx-auto px-8 flex justify-between items-center gap-4">
-    <div class="flex gap-6 items-center">
-      <span class="flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:13px">mail</span>info@podoinbalancemontero.com</span>
-      <span class="flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:13px">call</span>+34 965 84 04 97</span>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="inner">
+    <div class="left">
+      <span><span class="material-symbols-outlined">mail</span>info@podoinbalancemontero.com</span>
+      <span><span class="material-symbols-outlined">call</span>+34 965 84 04 97</span>
     </div>
-    <span class="flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:13px">schedule</span>Lunes a Viernes: 10:00 - 13:30 / 16:30 - 20:00</span>
-    <div class="flex gap-3 items-center">
-      <a href="#" class="opacity-80 hover:opacity-100 transition-opacity">
-        <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    <span><span class="material-symbols-outlined">schedule</span>Lun – Vie: 10:00 – 13:30 / 16:30 – 20:00</span>
+    <div class="right">
+      <a href="#" aria-label="Instagram">
+        <svg style="width:13px;height:13px;fill:rgba(255,255,255,0.6)" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       </a>
-      <a href="#" class="opacity-80 hover:opacity-100 transition-opacity">
-        <svg class="w-3.5 h-3.5 fill-white" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+      <a href="#" aria-label="Facebook">
+        <svg style="width:13px;height:13px;fill:rgba(255,255,255,0.6)" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
       </a>
     </div>
   </div>
 </div>
 
 <!-- HEADER -->
-<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 py-3 flex items-center justify-between gap-6">
-    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
-      <div class="w-9 h-9 bg-[#7C3AED] rounded-full flex items-center justify-center text-white font-bold text-xs">Pb</div>
-      <div>
-        <div class="font-bold text-gray-900 text-sm leading-tight">Podo in Balance</div>
-        <div class="text-gray-400 text-[10px]">Podología Postural</div>
+<header>
+  <div class="inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">Pb</div>
+      <div class="logo-text">
+        <span>Podo in Balance</span>
+        <span>Podología Postural</span>
       </div>
     </a>
-    <nav class="hidden md:flex items-center gap-6 flex-1 justify-center">
-      <a href="index.html" class="text-xs font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">Inicio</a>
-      <a href="el-centro.html" class="text-xs font-semibold text-[#7C3AED] border-b-2 border-[#7C3AED] pb-0.5">El Centro</a>
-      <a href="tratamientos.html" class="text-xs font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">Tratamientos</a>
-      <a href="vanessa-montero.html" class="text-xs font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">Vanessa Montero</a>
-      <a href="#" class="text-xs font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">Blog</a>
-      <a href="#contact" class="text-xs font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">Contacto</a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="el-centro.html" class="active">El Centro</a>
+      <a href="tratamientos.html">Tratamientos</a>
+      <a href="vanessa-montero.html">Vanessa Montero</a>
+      <a href="#">Blog</a>
+      <a href="#contact">Contacto</a>
     </nav>
-    <a href="#contact" class="hidden md:inline-flex bg-[#7C3AED] text-white px-5 py-2 rounded-full text-xs font-semibold hover:bg-[#5B21B6] transition-colors shrink-0 shadow">
-      Pedir una cita
+    <a href="#contact" class="cta-btn header-cta">
+      Pedir cita
+      <span class="material-symbols-outlined">arrow_forward</span>
     </a>
-    <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
-      <span class="material-symbols-outlined text-gray-800">menu</span>
+    <button class="menu-toggle" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+      <span class="material-symbols-outlined" style="font-size:26px">menu</span>
     </button>
   </div>
-  <div id="mobile-menu" class="flex-col bg-white border-t border-gray-100 px-6 py-4 gap-3 md:hidden">
-    <a href="index.html" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">Inicio</a>
-    <a href="el-centro.html" class="text-sm font-semibold text-[#7C3AED] block py-2 border-b border-gray-100">El Centro</a>
-    <a href="tratamientos.html" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">Tratamientos</a>
-    <a href="vanessa-montero.html" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">Vanessa Montero</a>
-    <a href="#" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">Blog</a>
-    <a href="#contact" class="text-sm font-medium text-gray-700 block py-2">Contacto</a>
-    <a href="#contact" class="bg-[#7C3AED] text-white text-center py-2.5 rounded-full font-semibold text-sm mt-2 block">Pedir una cita</a>
+  <div id="mobileNav" class="mobile-nav">
+    <a href="index.html">Inicio</a>
+    <a href="el-centro.html" class="active">El Centro</a>
+    <a href="tratamientos.html">Tratamientos</a>
+    <a href="vanessa-montero.html">Vanessa Montero</a>
+    <a href="#">Blog</a>
+    <a href="#contact">Contacto</a>
+    <a href="#contact" class="cta-btn" style="text-align:center;margin-top:8px">Pedir cita</a>
   </div>
 </header>
 
 <!-- HERO BANNER -->
-<section class="relative h-56 md:h-72 flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMdJipEDwDCX64kAVO98oi-IjL5n42dVIqRAk0PoY3qRGECB8_dPTVMDapGdnFmwyedovBAbYhjfRjrNcxZMPXV3bijkWS13PV8_uBpUzpYj4USVa9ketst2tYc2mZm1WeDsVbLc3yL-WWZ6cCBrZAda196cOs94UKro-PiS4Q3rdG8C9RrkmvKUejajfSLOt1B45Q6T0A4Crkk_-1eqO09gkAUW90qZO9Gj53AXUcywggDGqodLab1iw-yiTDmmV1nSvYjQaaMFUu')"></div>
-  <div class="absolute inset-0 bg-[#5B21B6]/70"></div>
-  <h1 class="relative z-10 text-white text-4xl md:text-5xl font-bold text-center">El Centro</h1>
+<section class="hero-banner">
+  <div class="bg" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMdJipEDwDCX64kAVO98oi-IjL5n42dVIqRAk0PoY3qRGECB8_dPTVMDapGdnFmwyedovBAbYhjfRjrNcxZMPXV3bijkWS13PV8_uBpUzpYj4USVa9ketst2tYc2mZm1WeDsVbLc3yL-WWZ6cCBrZAda196cOs94UKro-PiS4Q3rdG8C9RrkmvKUejajfSLOt1B45Q6T0A4Crkk_-1eqO09gkAUW90qZO9Gj53AXUcywggDGqodLab1iw-yiTDmmV1nSvYjQaaMFUu')"></div>
+  <div class="overlay"></div>
+  <div class="content anim-fade-up">
+    <div class="breadcrumb">
+      <a href="index.html">Inicio</a>
+      <span class="sep">›</span>
+      <span style="color:rgba(255,255,255,0.9)">El Centro</span>
+    </div>
+    <h1>Conoce nuestro <em>centro</em></h1>
+    <p>Un espacio pensado para tu bienestar, equipado con la última tecnología en podología y posturología.</p>
+  </div>
 </section>
 
-<!-- MAIN CONTENT -->
-<section class="py-20 px-8 bg-white">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-    <!-- Left: image -->
-    <div>
+<!-- ABOUT -->
+<section class="about">
+  <div class="inner">
+    <div class="about-img reveal">
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"
-        alt="Tratamiento podológico" class="w-full h-80 object-cover rounded-2xl shadow-lg"/>
+        alt="Tratamiento podológico"/>
+      <div class="accent-bar"></div>
     </div>
-    <!-- Right: text -->
-    <div>
-      <p class="text-[#2DD4BF] text-[11px] font-bold uppercase tracking-widest mb-3">Sobre nosotros</p>
-      <h2 class="text-3xl font-bold text-gray-900 leading-snug mb-6">Podología y postura para recuperar tu equilibrio</h2>
-      <div class="grid grid-cols-2 gap-8 mb-8">
-        <div>
-          <h4 class="font-bold text-gray-800 text-sm mb-2">Experiencia con método</h4>
-          <p class="text-gray-500 text-xs leading-relaxed">Llevamos más de 10 años de trayectoria profesional, ayudando a nuestros pacientes a recuperar el equilibrio postural mediante técnicas avanzadas de podología.</p>
+    <div class="about-content reveal">
+      <span class="section-tag">Sobre nosotros</span>
+      <h2 class="section-title">Podología y postura para recuperar tu equilibrio</h2>
+      <div class="features-grid">
+        <div class="about-feature">
+          <div class="icon"><span class="material-symbols-outlined">trending_up</span></div>
+          <h4>Experiencia con método</h4>
+          <p>Más de 10 años de trayectoria ayudando a recuperar el equilibrio postural mediante técnicas avanzadas de podología.</p>
         </div>
-        <div>
-          <h4 class="font-bold text-gray-800 text-sm mb-2">Experiencia con método</h4>
-          <p class="text-gray-500 text-xs leading-relaxed">Cada tratamiento parte de un análisis profundo y personalizado. Combinamos tecnología de diagnóstico con un enfoque humano y cercano.</p>
+        <div class="about-feature">
+          <div class="icon"><span class="material-symbols-outlined">person_search</span></div>
+          <h4>Diagnóstico personalizado</h4>
+          <p>Cada tratamiento parte de un análisis profundo. Combinamos tecnología de diagnóstico con un enfoque humano y cercano.</p>
+        </div>
+        <div class="about-feature">
+          <div class="icon"><span class="material-symbols-outlined">biotech</span></div>
+          <h4>Tecnología avanzada</h4>
+          <p>Equipos de última generación para estudios biomecánicos, baropodometría y análisis postural completo.</p>
+        </div>
+        <div class="about-feature">
+          <div class="icon"><span class="material-symbols-outlined">favorite</span></div>
+          <h4>Atención cercana</h4>
+          <p>Creemos en una relación de confianza con cada paciente. Te acompañamos en todo el proceso de mejora.</p>
         </div>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-[#7C3AED]">VM</div>
-        <span class="italic text-gray-600 text-sm" style="font-family:'Georgia',serif">Vanessa Montero</span>
+      <div class="about-author">
+        <div class="avatar">VM</div>
+        <div>
+          <p class="name">Vanessa Montero</p>
+          <p class="role">Directora · Podóloga colegiada</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY / INSTALACIONES -->
-<section class="py-16 px-8 bg-gray-50">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden" style="min-height:300px">
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="inner">
+    <div class="gallery-header reveal">
+      <span class="section-tag">Nuestras instalaciones</span>
+      <h2 class="section-title">Un espacio diseñado para tu salud</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-main reveal">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2i7U8lzVcvjKQ93CuUiEFVTMjh1N383E5YumbKgZHNvAOodNoeo6tVnj7vGiZiIYE8vyAYDnHzGxLsdvbzeDR_DXcxnrDwnYbFS8M8kIAduvwipYkVKFC1-vmWUqIJQ-Zp3x33F-Q3mGYBhJgN0PpJq7IYyYv3y_HmEQBoe8sWLSoa7v38NemqKSxa-Ql88D7Q0ok8-DqEYdiwOJ6OQm-BcqumEu_sR7ONWakFxBklQ_lT22WMFHxWA_pfCAjMSPAYFuDlxbE5djh"
-          alt="Instalación principal" class="w-full h-full object-cover" style="min-height:300px"/>
+          alt="Instalación principal"/>
+        <div class="label"><span>Sala de consulta principal</span></div>
       </div>
-      <div class="rounded-2xl overflow-hidden h-44">
+      <div class="gallery-item reveal">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ-pkVpTCpcxJhDKWmPX5GWeVavIuA-elbGtfem0kBH_Xu6Zy-44VTxY_im0Z2Fv816-FrI34AnrzeaFh3r47lcc0HTxMJVcY_RK_WMz-IDWyd_NKWq583nd4PaO7RfcaMSlPlO28Y_3217BrqjUPIjE4Aao3ayPf34-Jlqd3P72Bmwdpj1zNahIyxMuVrANnOXhmfTuoLL8TWT0YGpx8EYnDlC-zrMnVvu36xLwhYEQ0G-lSDYwEUROSZcV9330alc8v-wMvVT-0c"
-          alt="Sala de tratamiento" class="w-full h-full object-cover"/>
+          alt="Sala de tratamiento"/>
+        <div class="label"><span>Sala de tratamiento</span></div>
       </div>
-      <div class="rounded-2xl overflow-hidden h-44">
+      <div class="gallery-item reveal">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPYlizVcxQ6mn2MJMjQGs7KQAZdcfXoymBY-a2f_dWjRTc7q623vBTxrv_oZitUvsah3TTFwpCUCFljq5Qi3Epv5desk3mISbq2eCUIBmjTLG8xgW6FHPhi4KbWjlCWR17OdDBqFK6JnEwVVARcAq-FeSHfJxIK4-HtQik34S1Izhz7J5QuO3Rk3WA9xLAAJYlHrvv3U93fh8DuWtJVM7ueDY4VD32xlMw3VSsNBSFffQ_FWmdCDcOgPKpG1wbYlP0dRLfljWOmRm"
-          alt="Equipamiento" class="w-full h-full object-cover"/>
+          alt="Equipamiento"/>
+        <div class="label"><span>Equipamiento especializado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="inner">
+    <div class="values-header reveal">
+      <span class="section-tag">Lo que nos define</span>
+      <h2 class="section-title">Nuestros valores</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><span class="material-symbols-outlined">verified</span></div>
+        <h4>Rigor profesional</h4>
+        <p>Cada decisión clínica se basa en evidencia científica y formación continua de todo nuestro equipo.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><span class="material-symbols-outlined">handshake</span></div>
+        <h4>Confianza y cercanía</h4>
+        <p>Construimos una relación real con cada paciente. Tu bienestar es nuestra prioridad absoluta.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+        <h4>Innovación constante</h4>
+        <p>Incorporamos las últimas técnicas y tecnología para ofrecerte los mejores resultados posibles.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="py-20 px-8 bg-white">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <div class="text-7xl text-gray-200 font-serif leading-none select-none">"</div>
-      <p class="text-gray-700 text-base leading-relaxed italic mb-6 -mt-4">
-        "En primer lugar: agradecerte la atención profesional y cercana. Es una clínica de podología preparada, que trabaja con tecnología y criterio en cada consulta. Totalmente recomendable."
-      </p>
-      <div class="flex items-center gap-3 mb-3">
-        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-[#7C3AED]">JV</div>
+<section class="testimonials">
+  <div class="inner">
+    <div class="reveal">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">En primer lugar: agradecerte la atención profesional y cercana. Es una clínica de podología preparada, que trabaja con tecnología y criterio en cada consulta. Totalmente recomendable.</p>
+      <div class="testimonial-author">
+        <div class="avatar">JV</div>
         <div>
-          <p class="font-bold text-gray-900 text-sm">Judit Villar</p>
-          <p class="text-gray-400 text-xs">Podóloga</p>
+          <p class="name">Judit Villar</p>
+          <p class="role">Podóloga</p>
         </div>
       </div>
-      <span class="text-yellow-400 text-base">★★★★★</span>
+      <div class="stars" style="margin-top:12px">★★★★★</div>
     </div>
-    <div class="relative rounded-2xl overflow-hidden shadow-xl">
+    <div class="testimonial-img reveal">
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"
-        alt="Pacientes satisfechos" class="w-full h-80 object-cover object-top"/>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-        <div>
-          <p class="text-[#2DD4BF] text-[11px] font-bold uppercase tracking-widest mb-2">TESTIMONIAL</p>
-          <h3 class="text-white text-2xl font-bold leading-snug">Lo que nuestros<br>pacientes opinan</h3>
-        </div>
+        alt="Pacientes satisfechos"/>
+      <div class="overlay-text">
+        <span class="tag">Testimonial</span>
+        <h3>Lo que nuestros<br>pacientes opinan</h3>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="inner">
+    <h2>¿Listo para recuperar tu equilibrio?</h2>
+    <p>Pide tu primera cita y descubre cómo podemos ayudarte a mejorar tu salud postural desde los pies.</p>
+    <a href="#contact" class="cta-btn-white">
+      Solicitar una cita
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </a>
+  </div>
+</section>
+
 <!-- FOOTER -->
-<footer id="contact" class="text-white pt-14 pb-8 px-8" style="background:linear-gradient(135deg,#5B21B6 0%,#4C1D95 100%)">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 pb-10 border-b border-white/15">
-    <div>
-      <div class="flex items-center gap-2 mb-4">
-        <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#7C3AED] font-bold text-xs">Pb</div>
-        <span class="font-bold text-white text-base">Podo In Balance</span>
+<footer id="contact">
+  <div class="inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <div class="logo-mark" style="background:rgba(255,255,255,0.1)">Pb</div>
+          <span style="font-family:'Playfair Display',serif;font-size:16px;color:white">Podo In Balance</span>
+        </div>
+        <p>Clínica de podología y postura en Elda. Trabajamos desde el análisis de la pisada y la postura para que tu salud mejore con cada paso.</p>
       </div>
-      <p class="text-white/55 text-xs leading-relaxed mb-3">Clínica de podología y postura en Elda. Trabajamos desde el análisis de la pisada y la postura para que tu salud mejore con cada paso.</p>
-      <p class="text-white/55 text-xs leading-relaxed">En primeras mapas, con criterio y claridad.</p>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="tratamientos.html">Podología Integral</a></li>
+          <li><a href="tratamientos.html">Estudio de la pisada</a></li>
+          <li><a href="tratamientos.html">Reflexología</a></li>
+          <li><a href="tratamientos.html">Plantillas personalizadas</a></li>
+          <li><a href="tratamientos.html">Tratamiento de Uñas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Horario</h4>
+        <ul>
+          <li>Lunes – Viernes</li>
+          <li>10:00 – 13:30</li>
+          <li>16:30 – 20:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><span class="material-symbols-outlined">location_on</span>Calle J. Almodóvar, Elda</li>
+          <li><a href="tel:+34965840497"><span class="material-symbols-outlined">call</span>+34 965 84 04 97</a></li>
+          <li><a href="mailto:info@podoinbalancemontero.com"><span class="material-symbols-outlined">mail</span>info@podoinbalancemontero.com</a></li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Nuestros servicios</h4>
-      <ul class="flex flex-col gap-3">
-        <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Podología Integral</a></li>
-        <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Estudio de la pisada</a></li>
-        <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Reflexología</a></li>
-        <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Plantillas personalizadas</a></li>
-        <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Tratamiento de Uñas</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2025 Podo in Balance. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        </a>
+      </div>
     </div>
-    <div>
-      <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Horario</h4>
-      <ul class="flex flex-col gap-3 text-white/55 text-xs">
-        <li>Lunes - Viernes</li>
-        <li>10:00 - 13:30</li>
-        <li>16:30 - 20:00</li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Nuestros canales</h4>
-      <ul class="flex flex-col gap-3">
-        <li class="flex items-start gap-2 text-white/55 text-xs">
-          <span class="material-symbols-outlined" style="font-size:13px;margin-top:1px">location_on</span>
-          Calle J. Almodóvar, Elda
-        </li>
-        <li><a href="tel:+34965840497" class="flex items-center gap-2 text-white/55 text-xs hover:text-white transition-colors">
-          <span class="material-symbols-outlined" style="font-size:13px">call</span>+34 965 84 04 97
-        </a></li>
-        <li><a href="mailto:info@podoinbalancemontero.com" class="flex items-center gap-2 text-white/55 text-xs hover:text-white transition-colors">
-          <span class="material-symbols-outlined" style="font-size:13px">mail</span>info@podoinbalancemontero.com
-        </a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="max-w-7xl mx-auto pt-6 flex justify-between items-center">
-    <p class="text-white/35 text-xs">© 2025 Podo in Balance. Todos los derechos reservados.</p>
-    <div class="flex gap-3">
-      <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-        <svg class="w-3.5 h-3.5 fill-white/60" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
-        <svg class="w-3.5 h-3.5 fill-white/60" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
-      </a>
-    </div>
-  </div>
-  <div class="flex justify-center gap-2 mt-8">
-    <span class="w-2 h-2 rounded-full bg-white/25 block"></span>
-    <span class="w-2 h-2 rounded-full bg-white/60 block"></span>
-    <span class="w-2 h-2 rounded-full bg-white/25 block"></span>
   </div>
 </footer>
 
 <script>
-  document.getElementById('mobile-menu').addEventListener('click', function(e) {
-    if (e.target.tagName === 'A') this.classList.remove('open');
+  // Scroll reveal
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Close mobile menu on link click
+  document.getElementById('mobileNav').addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      this.classList.remove('open');
+    }
   });
 </script>
 </body>

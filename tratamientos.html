@@ -7,6 +7,8 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 <script>
   tailwind.config = {
     theme: {
@@ -29,7 +31,6 @@
 </head>
 <body class="text-gray-800 bg-white overflow-x-hidden">
 
-<!-- TOP INFO BAR -->
 <div class="bg-[#7C3AED] text-white text-xs py-1.5 hidden md:block">
   <div class="max-w-7xl mx-auto px-8 flex justify-between items-center gap-4">
     <div class="flex gap-6 items-center">
@@ -48,8 +49,7 @@
   </div>
 </div>
 
-<!-- HEADER -->
-<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 md:px-8 py-3 flex items-center justify-between gap-6">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
       <div class="w-9 h-9 bg-[#7C3AED] rounded-full flex items-center justify-center text-white font-bold text-xs">Pb</div>
@@ -73,7 +73,7 @@
       <span class="material-symbols-outlined text-gray-800">menu</span>
     </button>
   </div>
-  <div id="mobile-menu" class="flex-col bg-white border-t border-gray-100 px-6 py-4 gap-3 md:hidden">
+  <div id="mobile-menu" class="flex-col bg-white border-t border-gray-100 px-6 py-4 gap-3 md:hidden transition-all duration-300">
     <a href="index.html" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">Inicio</a>
     <a href="el-centro.html" class="text-sm font-medium text-gray-700 block py-2 border-b border-gray-100">El Centro</a>
     <a href="tratamientos.html" class="text-sm font-semibold text-[#7C3AED] block py-2 border-b border-gray-100">Tratamientos</a>
@@ -84,102 +84,91 @@
   </div>
 </header>
 
-<!-- HERO BANNER -->
 <section class="relative h-56 md:h-72 flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDMdJipEDwDCX64kAVO98oi-IjL5n42dVIqRAk0PoY3qRGECB8_dPTVMDapGdnFmwyedovBAbYhjfRjrNcxZMPXV3bijkWS13PV8_uBpUzpYj4USVa9ketst2tYc2mZm1WeDsVbLc3yL-WWZ6cCBrZAda196cOs94UKro-PiS4Q3rdG8C9RrkmvKUejajfSLOt1B45Q6T0A4Crkk_-1eqO09gkAUW90qZO9Gj53AXUcywggDGqodLab1iw-yiTDmmV1nSvYjQaaMFUu')"></div>
   <div class="absolute inset-0 bg-[#5B21B6]/70"></div>
-  <h1 class="relative z-10 text-white text-4xl md:text-5xl font-bold text-center">Tratamientos</h1>
+  <h1 class="relative z-10 text-white text-4xl md:text-5xl font-bold text-center" data-aos="zoom-in" data-aos-duration="1000">Tratamientos</h1>
 </section>
 
-<!-- TREATMENTS GRID -->
 <section class="py-20 px-8 bg-white">
   <div class="max-w-5xl mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
 
-      <!-- Posturales -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="0">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"
-          alt="Posturales" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Posturales" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Posturales</span>
         </div>
       </div>
 
-      <!-- Quiropedia -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="100">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"
-          alt="Quiropedia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Quiropedia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Quiropedia</span>
         </div>
       </div>
 
-      <!-- Uñas Encarnadas -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="200">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ-pkVpTCpcxJhDKWmPX5GWeVavIuA-elbGtfem0kBH_Xu6Zy-44VTxY_im0Z2Fv816-FrI34AnrzeaFh3r47lcc0HTxMJVcY_RK_WMz-IDWyd_NKWq583nd4PaO7RfcaMSlPlO28Y_3217BrqjUPIjE4Aao3ayPf34-Jlqd3P72Bmwdpj1zNahIyxMuVrANnOXhmfTuoLL8TWT0YGpx8EYnDlC-zrMnVvu36xLwhYEQ0G-lSDYwEUROSZcV9330alc8v-wMvVT-0c"
-          alt="Uñas Encarnadas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Uñas Encarnadas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Uñas Encarnadas</span>
         </div>
       </div>
 
-      <!-- Cirugía -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="0">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVPYlizVcxQ6mn2MJMjQGs7KQAZdcfXoymBY-a2f_dWjRTc7q623vBTxrv_oZitUvsah3TTFwpCUCFljq5Qi3Epv5desk3mISbq2eCUIBmjTLG8xgW6FHPhi4KbWjlCWR17OdDBqFK6JnEwVVARcAq-FeSHfJxIK4-HtQik34S1Izhz7J5QuO3Rk3WA9xLAAJYlHrvv3U93fh8DuWtJVM7ueDY4VD32xlMw3VSsNBSFffQ_FWmdCDcOgPKpG1wbYlP0dRLfljWOmRm"
-          alt="Cirugía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Cirugía" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Cirugía</span>
         </div>
       </div>
 
-      <!-- Ortonixa -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="100">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"
-          alt="Ortonixa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Ortonixa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Ortonixa</span>
         </div>
       </div>
 
-      <!-- Papiloma -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="200">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"
-          alt="Papiloma" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Papiloma" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Papiloma</span>
         </div>
       </div>
 
-      <!-- Siliconas -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="0">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ-pkVpTCpcxJhDKWmPX5GWeVavIuA-elbGtfem0kBH_Xu6Zy-44VTxY_im0Z2Fv816-FrI34AnrzeaFh3r47lcc0HTxMJVcY_RK_WMz-IDWyd_NKWq583nd4PaO7RfcaMSlPlO28Y_3217BrqjUPIjE4Aao3ayPf34-Jlqd3P72Bmwdpj1zNahIyxMuVrANnOXhmfTuoLL8TWT0YGpx8EYnDlC-zrMnVvu36xLwhYEQ0G-lSDYwEUROSZcV9330alc8v-wMvVT-0c"
-          alt="Siliconas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Siliconas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Siliconas</span>
         </div>
       </div>
 
-      <!-- Hongos -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="100">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0G_lkKjuwO39vGZElDb9FtaW3-F4U5CLaf_yRKyv929n67mKuDPcP1fiCSndsYMZY1YFJcMHeRKvxem4V5ehiWAtLhRoSCcDK9vE9kmTecnBxrUGaG8WACI2LZDlbqjrzi2SshjpVaGL6H2t0FkmkFgDY7VcbI09e43yxtX0yZ5WSXeUqW7NcgxXbMtndqDV5ne7_SiTWZzaA4Vju-S22lIBW2MWISUnwJDBbJw5QuGX8e1sD18kpKVEFzLFnuPmnjqAesTAZp9t"
-          alt="Hongos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Hongos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Hongos</span>
         </div>
       </div>
 
-      <!-- Láser -->
-      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px">
+      <div class="relative rounded-2xl overflow-hidden group cursor-pointer shadow-sm hover:shadow-xl transition-shadow" style="height:260px" data-aos="fade-up" data-aos-delay="200">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvr8fI_EJa8nr_s51j9a9Q5v0Sz1lm7jZvEOFTOqz1znj9mR2kz-i76jPOt5jj0YEWerUDgUwAFWJizfOMV4E1plKAwYF5xKczC_ci98KrgyIGUvJ8SMTLzcOvCxmOoyeSqeu8fFU4QF6a9KPhzZU8eImrgM4MvE-toY87FNJqW4GMbqd7l3ugkYYMdauXdK8S5sqpFiGcYSqMxJ17CVz9f9biEZgSbgVm9r3zn5IL3CXJLwDHrLD8tpH8DvPFXgAraUKfJOO8hpKu"
-          alt="Láser" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+          alt="Láser" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-4">
           <span class="bg-[#7C3AED] text-white text-xs font-semibold px-4 py-1.5 rounded-full">Láser</span>
@@ -190,10 +179,9 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="py-20 px-8 bg-gray-50">
+<section class="py-20 px-8 bg-gray-50 overflow-hidden">
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div>
+    <div data-aos="fade-right" data-aos-duration="1000">
       <div class="text-7xl text-gray-200 font-serif leading-none select-none">"</div>
       <p class="text-gray-700 text-base leading-relaxed italic mb-6 -mt-4">
         "En primer lugar: agradecerte la atención profesional y cercana. Es una clínica de podología preparada, que trabaja con tecnología y criterio en cada consulta. Totalmente recomendable."
@@ -207,7 +195,7 @@
       </div>
       <span class="text-yellow-400 text-base">★★★★★</span>
     </div>
-    <div class="relative rounded-2xl overflow-hidden shadow-xl">
+    <div class="relative rounded-2xl overflow-hidden shadow-xl" data-aos="fade-left" data-aos-duration="1000">
       <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvwBRb9qsQjbW7gvTfTJNoFlhMnDYR6Y382bVOeoF73DOW6Tcm7lii53h0KyYrqbVMue6hD_nrrEJgEYDr0-U8ZgjnByCHC792krcUYQafX-lS10hOiwD_rYf1XzoF_DDHMhYj4BYj5O1nUFTG5nkCWFXk_fHiVKxIXZiW9787NKuwJAAlJTVsWpeCEA6XcohrceoOI5E4TchFQI9vrv_ORjAA1iKM41BmcE93TSEaFY96_mORbqXT9ESQ4lYvhF6ob3w5Ir_oHWN"
         alt="Pacientes satisfechos" class="w-full h-80 object-cover object-top"/>
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
@@ -220,10 +208,9 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer id="contact" class="text-white pt-14 pb-8 px-8" style="background:linear-gradient(135deg,#5B21B6 0%,#4C1D95 100%)">
+<footer id="contact" class="text-white pt-14 pb-8 px-8 overflow-hidden" style="background:linear-gradient(135deg,#5B21B6 0%,#4C1D95 100%)">
   <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 pb-10 border-b border-white/15">
-    <div>
+    <div data-aos="fade-up" data-aos-delay="0">
       <div class="flex items-center gap-2 mb-4">
         <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center text-[#7C3AED] font-bold text-xs">Pb</div>
         <span class="font-bold text-white text-base">Podo In Balance</span>
@@ -231,7 +218,7 @@
       <p class="text-white/55 text-xs leading-relaxed mb-3">Clínica de podología y postura en Elda. Trabajamos desde el análisis de la pisada y la postura para que tu salud mejore con cada paso.</p>
       <p class="text-white/55 text-xs leading-relaxed">En primeras mapas, con criterio y claridad.</p>
     </div>
-    <div>
+    <div data-aos="fade-up" data-aos-delay="100">
       <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Nuestros servicios</h4>
       <ul class="flex flex-col gap-3">
         <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Podología Integral</a></li>
@@ -241,7 +228,7 @@
         <li><a href="tratamientos.html" class="text-white/55 text-xs hover:text-white transition-colors">Tratamiento de Uñas</a></li>
       </ul>
     </div>
-    <div>
+    <div data-aos="fade-up" data-aos-delay="200">
       <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Horario</h4>
       <ul class="flex flex-col gap-3 text-white/55 text-xs">
         <li>Lunes - Viernes</li>
@@ -249,7 +236,7 @@
         <li>16:30 - 20:00</li>
       </ul>
     </div>
-    <div>
+    <div data-aos="fade-up" data-aos-delay="300">
       <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/85 mb-5">Nuestros canales</h4>
       <ul class="flex flex-col gap-3">
         <li class="flex items-start gap-2 text-white/55 text-xs">
@@ -265,7 +252,7 @@
       </ul>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto pt-6 flex justify-between items-center">
+  <div class="max-w-7xl mx-auto pt-6 flex justify-between items-center" data-aos="fade-in" data-aos-delay="400">
     <p class="text-white/35 text-xs">© 2025 Podo in Balance. Todos los derechos reservados.</p>
     <div class="flex gap-3">
       <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
@@ -276,14 +263,24 @@
       </a>
     </div>
   </div>
-  <div class="flex justify-center gap-2 mt-8">
+  <div class="flex justify-center gap-2 mt-8 pb-4">
     <span class="w-2 h-2 rounded-full bg-white/25 block"></span>
     <span class="w-2 h-2 rounded-full bg-white/60 block"></span>
     <span class="w-2 h-2 rounded-full bg-white/25 block"></span>
   </div>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+  // Inicializamos las animaciones
+  AOS.init({
+    once: true, // La animación solo ocurre una vez al hacer scroll
+    offset: 50, // Se activa 50px antes de que el elemento aparezca del todo
+    duration: 800, // Duración por defecto (800ms)
+    easing: 'ease-in-out', // Suavizado de la animación
+  });
+
+  // Script del menú móvil
   document.getElementById('mobile-menu').addEventListener('click', function(e) {
     if (e.target.tagName === 'A') this.classList.remove('open');
   });

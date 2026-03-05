@@ -89,35 +89,43 @@
   .experts-inner { max-width:1200px; margin:0 auto; text-align:center; }
   .experts-tag { color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem; }
   .experts-title { font-size:clamp(1.8rem,3vw,2.5rem); font-weight:700; color:var(--dark); margin-bottom:3rem; }
-  .experts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-  .expert-card { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); transition:transform 0.3s; }
+  .experts-grid { display:grid; grid-template-columns:1fr; gap:2rem; }
+   .expert-card { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); transition:transform 0.3s; }
   .expert-card:hover { transform:translateY(-6px); }
-  .expert-card-img { height:320px; overflow:hidden; }
-  .expert-card-img img { width:100%; height:100%; object-fit:cover; }
+.expert-card-img { height:500px; overflow:hidden; background:#fff; }
+.expert-card-img img { width:100%; height:100%; object-fit:cover; object-position:center top; }
   .expert-card-info { padding:1.5rem; }
   .expert-card-info h4 { font-size:18px; font-weight:700; color:var(--dark); margin-bottom:0.3rem; }
   .expert-card-info p { font-size:14px; color:var(--purple); font-weight:500; }
 
   /* ── Testimonials ── */
-  .testimonials { position:relative; padding:5rem 2rem; background:var(--gray-bg); overflow:hidden; }
-  .testimonials-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr; gap:3rem; align-items:center; }
-  .testimonials-left { display:flex; flex-direction:column; gap:1.5rem; }
-  .testimonial-card { background:var(--white); border-radius:16px; padding:2rem; box-shadow:0 2px 16px rgba(0,0,0,0.06); position:relative; }
-  .testimonial-card::before { content:'\201C'; position:absolute; top:12px; left:20px; font-size:48px; color:var(--teal); font-family:Georgia,serif; line-height:1; }
-  .testimonial-card p { font-size:14px; line-height:1.7; color:#555; padding-top:1rem; }
-  .testimonial-card-footer { display:flex; align-items:center; gap:0.75rem; margin-top:1rem; }
-  .testimonial-card-avatar { width:40px; height:40px; border-radius:50%; background:var(--gray-light); overflow:hidden; }
-  .testimonial-card-avatar img { width:100%; height:100%; object-fit:cover; }
-  .testimonial-card-name { font-size:14px; font-weight:700; color:var(--dark); }
-  .testimonial-card-role { font-size:12px; color:#999; }
-  .testimonial-stars { color:#F5A623; font-size:14px; margin-top:0.5rem; }
-  .testimonials-right { text-align:center; }
-  .testimonials-right-header { margin-bottom:1.5rem; }
-  .testimonials-right-header small { display:block; color:var(--teal); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
-  .testimonials-right-header h2 { font-size:28px; font-weight:700; color:var(--dark); line-height:1.3; margin-top:0.5rem; }
-  .testimonials-right-img { position:relative; display:inline-block; }
-  .testimonials-right-img img { max-height:420px; object-fit:contain; border-radius:16px; }
-  .testimonials-right-img .circle-deco { position:absolute; bottom:-10px; right:-10px; width:80px; height:80px; border:3px solid var(--teal); border-radius:50%; z-index:-1; }
+/* ── Testimonials ── */
+.testimonials { position:relative; padding:5rem 2rem; background:var(--gray-bg); overflow:hidden; }
+.testimonials-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr; gap:3rem; align-items:center; }
+
+.testimonials-left { position:relative; overflow:hidden; }
+.testimonials-track { display:flex; transition:transform 0.5s ease; }
+.testimonial-card { background:var(--white); border-radius:16px; padding:2rem 2rem 1.5rem; box-shadow:0 2px 16px rgba(0,0,0,0.06); position:relative; min-width:100%; box-sizing:border-box; }
+.testimonial-card::before { content:'"\201C\201C"'; position:absolute; top:14px; left:20px; font-size:36px; color:var(--purple); font-family:Georgia,serif; line-height:1; letter-spacing:-4px; }
+.testimonial-card p { font-size:14px; line-height:1.7; color:#555; padding-top:1.2rem; }
+.testimonial-card-footer { display:flex; align-items:center; gap:0.75rem; margin-top:1.2rem; }
+.testimonial-card-avatar { width:44px; height:44px; border-radius:50%; overflow:hidden; flex-shrink:0; }
+.testimonial-card-avatar img { width:100%; height:100%; object-fit:cover; }
+.testimonial-card-name { font-size:14px; font-weight:700; color:var(--dark); }
+.testimonial-card-role { font-size:12px; color:#999; }
+.testimonial-stars { color:#F5A623; font-size:16px; margin-top:0.75rem; }
+
+.testimonials-dots { display:flex; gap:8px; margin-top:1.2rem; }
+.testimonials-dots button { width:10px; height:10px; border-radius:50%; border:none; background:#ccc; cursor:pointer; padding:0; transition:background 0.3s; }
+.testimonials-dots button.active { background:var(--purple); }
+
+.testimonials-right { text-align:left; }
+.testimonials-right-header { margin-bottom:1.5rem; }
+.testimonials-right-header small { display:block; color:var(--teal); font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; }
+.testimonials-right-header h2 { font-size:clamp(1.8rem,2.5vw,2.2rem); font-weight:700; color:var(--dark); line-height:1.25; margin-top:0.4rem; }
+.testimonials-right-img { position:relative; display:block; }
+.testimonials-right-img > img { max-height:400px; width:100%; object-fit:contain; object-position:bottom; display:block; position:relative; z-index:1; }
+.circle-deco { position:absolute; bottom:10px; right:-10px; width:90px; height:90px; border:3px solid var(--teal); border-radius:50%; z-index:0; }
 
   /* ── Footer ── */
   .footer { position:relative; padding:4rem 2rem 2rem; color:var(--white); background:var(--dark); }
@@ -217,7 +225,7 @@
 <section class="about">
   <div class="about-inner">
     <div class="about-photo" data-aos="fade-right" data-aos-duration="1000">
-      <img src="imagenesParaReplicar/elCentroHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt="Vanesa Montero en consulta"/>
+      <img src="imagenesParaReplicar/elCentroHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg  " alt="Vanesa Montero en consulta"/>
       <div class="about-photo-border"></div>
     </div>
     <div class="about-content" data-aos="fade-left" data-aos-duration="1000">
@@ -290,29 +298,7 @@
     <div class="experts-grid">
       <div class="expert-card" data-aos="fade-up" data-aos-delay="100">
         <div class="expert-card-img">
-          <img src="imagenesParaReplicar/elCentroHtml/005435a0c0dcb7cbbe23eaa6ecbdce0762480beb.jpg" alt="Dr. Profesional"/>
-        </div>
-        <div class="expert-card-info">
-          <h4>Dr. Carlos Ruiz</h4>
-          <p>Podólogo especialista</p>
-        </div>
-      </div>
-      <div class="expert-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="expert-card-img">
-          <img src="imagenesParaReplicar/elCentroHtml/a27e8587ad5986781839fa4ee33619b27ee2cbc6.jpg" alt="Dra. Vanesa Montero"/>
-        </div>
-        <div class="expert-card-info">
-          <h4>Vanesa Montero</h4>
-          <p>Directora / Podóloga</p>
-        </div>
-      </div>
-      <div class="expert-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="expert-card-img">
-          <img src="imagenesParaReplicar/elCentroHtml/3f87bf7f923da5ed4d8c332e336b55750e6a1d06.jpg" alt="Profesional"/>
-        </div>
-        <div class="expert-card-info">
-          <h4>Dra. Laura García</h4>
-          <p>Posturóloga</p>
+          <img src="imagenesParaReplicar/elCentroHtml/d62703ea1ea27512a428596c36bf2b3a1aac368e.png" alt="Nuestros expertos"/>
         </div>
       </div>
     </div>
@@ -320,46 +306,51 @@
 </section>
 
 <!-- TESTIMONIALS -->
+<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="testimonials-inner">
     <div class="testimonials-left" data-aos="fade-right" data-aos-duration="1000">
-      <div class="testimonial-card">
-        <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace más de un año y desde entonces mi calidad de vida ha mejorado muchísimo. Totalmente recomendable.</p>
-        <div class="testimonial-card-footer">
-          <div class="testimonial-card-avatar">
-            <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <p>En primer lugar agradecer a Vanesa lo buena profesional y persona que es. Acudí a su consulta hace más de un año y desde entonces mi calidad de vida ha mejorado muchísimo. Totalmente recomendable.</p>
+          <div class="testimonial-card-footer">
+            <div class="testimonial-card-avatar">
+              <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
+            </div>
+            <div>
+              <div class="testimonial-card-name">María López</div>
+              <div class="testimonial-card-role">Paciente</div>
+            </div>
           </div>
-          <div>
-            <div class="testimonial-card-name">María López</div>
-            <div class="testimonial-card-role">Paciente</div>
-          </div>
+          <div class="testimonial-stars">★★★★★</div>
         </div>
-        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-card">
+          <p>Excelentes profesionales, empezando por la recepcionista seguido del equipo de podólogas. El trato es cercano y profesional. Sin duda el mejor centro de podología de la zona.</p>
+          <div class="testimonial-card-footer">
+            <div class="testimonial-card-avatar">
+              <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
+            </div>
+            <div>
+              <div class="testimonial-card-name">Judith White</div>
+              <div class="testimonial-card-role">Managing Director</div>
+            </div>
+          </div>
+          <div class="testimonial-stars">★★★★★</div>
+        </div>
       </div>
-      <div class="testimonial-card">
-        <p>Excelentes profesionales, empezando por la recepcionista seguido del equipo de podólogas. El trato es cercano y profesional. Sin duda el mejor centro de podología de la zona.</p>
-        <div class="testimonial-card-footer">
-          <div class="testimonial-card-avatar">
-            <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt=""/>
-          </div>
-          <div>
-            <div class="testimonial-card-name">Judith White</div>
-            <div class="testimonial-card-role">Managing Director</div>
-          </div>
-        </div>
-        <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonials-dots">
+        <button class="active" onclick="goToSlide(0)"></button>
+        <button onclick="goToSlide(1)"></button>
       </div>
     </div>
     <div class="testimonials-right" data-aos="fade-left" data-aos-duration="1000">
-      <div class="testimonials-right-header">
-        <small>Testimoniales</small>
-        <h2>Lo que nuestros<br/>pacientes opinan</h2>
-      </div>
-      <div class="testimonials-right-img">
-        <img src="imagenesParaReplicar/elCentroHtml/64f109fea7798f4a251766442b40ce8b27eac780.png" alt="Profesional del centro"/>
-        <div class="circle-deco"></div>
-      </div>
-    </div>
+  <div class="testimonials-right-header">
+    <small>Testimoniales</small>
+    <h2>Lo que nuestros<br/>pacientes opinan</h2>
+  </div>
+ <div style="position:absolute; bottom:0; right:-20px; width:160px; height:85%; z-index:2; overflow:hidden;">
+  <img src="imagenesParaReplicar/elCentroHtml/61eb0764510aa93a25b6ab62a0b7537f567b3bc1.png" alt="Profesional" style="width:100%; height:100%; object-fit:cover; object-position:center top;"/>
+</div>
   </div>
 </section>
 
@@ -415,6 +406,15 @@
   document.getElementById('mobileNav').addEventListener('click', function(e) {
     if (e.target.tagName === 'A') this.classList.remove('open');
   });
+
+  function goToSlide(index) {
+    const track = document.getElementById('testimonialsTrack');
+    const dots = document.querySelectorAll('.testimonials-dots button');
+    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === index);
+    });
+  }
 </script>
 </body>
 </html>
